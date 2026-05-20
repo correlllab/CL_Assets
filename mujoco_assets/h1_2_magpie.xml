@@ -1,6 +1,8 @@
 <mujoco model="H1-2 + Magpie">
   <compiler angle="radian" meshdir="../meshes" autolimits="true"/>
   
+
+
   <visual>
     <headlight ambient=".4 .4 .4" diffuse=".8 .8 .8" specular="0.1 0.1 0.1"/>
     <map znear=".01"/>
@@ -11,7 +13,7 @@
   <default>
     <!-- H-12 defaults -->
     <default class="h1_2">
-      <joint damping="1" armature="0.1"/>
+      <joint damping="10" armature="0.1"  frictionloss="0.2" />
       <default class="hip">
         <position forcerange="-200 200" kp="200" kv="5"/>
       </default>
