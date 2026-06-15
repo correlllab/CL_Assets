@@ -15,9 +15,10 @@ Transforms applied (see docs/superpowers/specs/2026-06-08-...-design.md §7.3):
     substring part-classification groups them as legs, not arms. The ROS-facing
     names are unchanged; h1_mujoco/h1_2_robosuite.py keeps a ROS<->sim translation
     table (LEG_JOINT_RENAME, re-exported below).
-  * grippers extracted into standalone GripperModel MJCFs with an `eef` body,
-    `grip_site`/`grip_site_cylinder`, and the right gripper's two actuated joints
-    renamed to finger_joint1/finger_joint2 (RoboCasa check_obj_grasped hard-codes
+  * grippers extracted into standalone GripperModel MJCFs with the
+    robosuite-mandated `eef` body and `grip_site`/`grip_site_cylinder` sites
+    (invisible, group 4) and the right gripper's two actuated joints renamed to
+    finger_joint1/finger_joint2 (RoboCasa check_obj_grasped hard-codes
     gripper0_right_finger_joint1/2).
   * nested <default>/childclass flattened to per-element attrs (robosuite's stock
     MujocoXML loader chokes on nested classes).
@@ -35,7 +36,12 @@ import xml.etree.ElementTree as ET
 HERE = os.path.dirname(os.path.abspath(__file__))
 CL_ASSETS = os.path.normpath(os.path.join(HERE, ".."))
 SRC = os.path.join(CL_ASSETS, "mujoco_assets", "h1_2_magpie.xml")
-GRIPPER_FRAG = os.path.join(CL_ASSETS, "mujoco_assets", "magpie_gripper.xml")
+# Each side has its own source fragment. They are geometrically identical; the
+# left one carries a "leftg_" name prefix (so both can coexist in the legacy
+# combined h1_2_magpie.xml). build_gripper strips that prefix for the left so
+# both outputs share the canonical bare names robosuite/RoboCasa expect.
+GRIPPER_FRAG_R = os.path.join(CL_ASSETS, "mujoco_assets", "magpie_gripper.xml")
+GRIPPER_FRAG_L = os.path.join(CL_ASSETS, "mujoco_assets", "magpie_gripper_left.xml")
 
 OUT_ROBOT = os.path.join(HERE, "robots", "h1_2", "robot.xml")
 OUT_GRIP_R = os.path.join(HERE, "grippers", "magpie_right_gripper.xml")
@@ -246,9 +252,23 @@ def build_robot():
 # gripper xml (one builder; emitted for both sides with identical internal names
 # since robosuite namespaces them gripper0_right_/gripper0_left_)
 # --------------------------------------------------------------------------- #
-def build_gripper(model_name):
-    frag = ET.parse(GRIPPER_FRAG).getroot()      # root <body name="mount">
+def build_gripper(model_name, frag_path, strip_prefix=None):
+    frag = ET.parse(frag_path).getroot()         # root <body name="mount">
     mount = copy.deepcopy(frag)
+
+    # The left fragment names everything "leftg_*" so it stays unique inside the
+    # legacy combined model. robosuite emits each gripper as its own file and
+    # re-prefixes with gripper0_<side>_, so the leftg_ prefix is redundant here
+    # and breaks downstream code that hardcodes bare names (_important_geoms's
+    # left_pad*/right_pad*, FINGER_JOINT_RENAME's left_hinge_1/right_hinge_1, the
+    # bare 4-bar equality body refs). Strip it so the left output matches the
+    # right's canonical names; the rest of this builder then applies unchanged.
+    if strip_prefix:
+        for el in mount.iter():
+            for attr in ("name", "joint"):
+                v = el.get(attr)
+                if v and v.startswith(strip_prefix):
+                    el.set(attr, v[len(strip_prefix):])
 
     # inline geom classes; set joint dynamics (preserve currently-inherited h1_2
     # joint values); rename actuated joints to finger_joint1/2
@@ -261,14 +281,18 @@ def build_gripper(model_name):
         if nm in FINGER_JOINT_RENAME:
             joint.set("name", FINGER_JOINT_RENAME[nm])
 
-    # eef body holding grip_site/grip_site_cylinder at the grasp center (the
-    # original mount-frame "eeff" site location).
+    # robosuite hard-requires a body named "eef" (GripperModel.__init__ reads
+    # its quat for rotation_offset) and sites named grip_site/grip_site_cylinder
+    # (mobile_robot.setup_references resolves gripper.important_sites at env
+    # construction; RoboCasa task metrics read grip_site's world position), so
+    # none of these can be dropped. Keep them at the grasp center but in group 4
+    # (like touch_/tip_) so they never show in the viewer or camera renders.
     eef = ET.SubElement(mount, "body", {"name": "eef", "pos": "-0.004 0 0.193"})
     ET.SubElement(eef, "site", {"name": "grip_site", "pos": "0 0 0", "size": "0.01",
-                                "rgba": "1 0 0 0.5", "group": "1", "type": "sphere"})
+                                "rgba": "1 0 0 0.5", "group": "4", "type": "sphere"})
     ET.SubElement(eef, "site", {"name": "grip_site_cylinder", "pos": "0 0 0",
                                 "type": "cylinder", "size": "0.005 0.05",
-                                "rgba": "0 1 0 0.3", "group": "1"})
+                                "rgba": "0 1 0 0.3", "group": "4"})
 
     # EE force/torque frame. robosuite's robot.control() reads force_ee/torque_ee
     # (gripper.important_sensors) every control step, so the gripper MUST declare
@@ -334,8 +358,8 @@ def write_tree(tree, path):
 
 def main():
     write_tree(build_robot(), OUT_ROBOT)
-    write_tree(build_gripper("magpie_right_gripper"), OUT_GRIP_R)
-    write_tree(build_gripper("magpie_left_gripper"), OUT_GRIP_L)
+    write_tree(build_gripper("magpie_right_gripper", GRIPPER_FRAG_R), OUT_GRIP_R)
+    write_tree(build_gripper("magpie_left_gripper", GRIPPER_FRAG_L, strip_prefix="leftg_"), OUT_GRIP_L)
     print("wrote:\n ", OUT_ROBOT, "\n ", OUT_GRIP_R, "\n ", OUT_GRIP_L)
 
     # smoke test: compile each standalone with mujoco

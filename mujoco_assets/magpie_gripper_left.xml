@@ -1,8 +1,11 @@
 <!-- Left-side namespaced Magpie gripper body hierarchy for bimanual include use -->
 <body name="leftg_mount" gravcomp="1">
-  <site name="leftg_eeff" pos="-0.004 0 0.193" group="3"/>
   <geom type="mesh" class="visual" mesh="magpie_mount" xyaxes="0 -1 0 1 0 0"/>
   <geom type="mesh" class="collision" mesh="magpie_mount" xyaxes="0 -1 0 1 0 0"/>
+  <!-- Eye-in-hand RGBD camera: on the gripper's central axis, looking straight
+       down it (mount +z, the approach/grasp direction). -->
+  <camera name="leftg_hand_cam" pos="0 0 0.045" xyaxes="-1 0 0 0 1 0" fovy="58"/>
+  <site name="leftg_hand_cam_site" pos="0 0 0.045" size="0.01" rgba="0 1 0 1"/>
   <body name="leftg_base_bot" gravcomp="1">
     <geom type="mesh" class="visual" mesh="magpie_base_bot" xyaxes="0 -1 0 1 0 0"/>
     <geom type="mesh" class="collision" mesh="magpie_base_bot" xyaxes="0 -1 0 1 0 0"/>

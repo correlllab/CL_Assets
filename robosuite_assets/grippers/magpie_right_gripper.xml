@@ -14,9 +14,10 @@
   </asset>
   <worldbody>
     <body name="mount" gravcomp="1">
-      <site name="eeff" pos="-0.004 0 0.193" group="3" />
       <geom type="mesh" mesh="magpie_mount" xyaxes="0 -1 0 1 0 0" contype="0" conaffinity="0" group="1" rgba="0.1 0.1 0.1 1" />
       <geom type="mesh" mesh="magpie_mount" xyaxes="0 -1 0 1 0 0" group="0" condim="4" friction="1 0.005 0.001" solref="0.002 1" solimp="0.9 0.95 0.001" />
+      <camera name="hand_cam" pos="0 0 0.045" xyaxes="-1 0 0 0 1 0" fovy="58" />
+      <site name="hand_cam_site" pos="0 0 0.045" size="0.01" rgba="0 1 0 1" />
       <body name="base_bot" gravcomp="1">
         <geom type="mesh" mesh="magpie_base_bot" xyaxes="0 -1 0 1 0 0" contype="0" conaffinity="0" group="1" rgba="0.1 0.1 0.1 1" />
         <geom type="mesh" mesh="magpie_base_bot" xyaxes="0 -1 0 1 0 0" group="0" condim="4" friction="1 0.005 0.001" solref="0.002 1" solimp="0.9 0.95 0.001" />
@@ -68,8 +69,8 @@
         </body>
       </body>
       <body name="eef" pos="-0.004 0 0.193">
-        <site name="grip_site" pos="0 0 0" size="0.01" rgba="1 0 0 0.5" group="1" type="sphere" />
-        <site name="grip_site_cylinder" pos="0 0 0" type="cylinder" size="0.005 0.05" rgba="0 1 0 0.3" group="1" />
+        <site name="grip_site" pos="0 0 0" size="0.01" rgba="1 0 0 0.5" group="4" type="sphere" />
+        <site name="grip_site_cylinder" pos="0 0 0" type="cylinder" size="0.005 0.05" rgba="0 1 0 0.3" group="4" />
       </body>
       <site name="ft_frame" pos="0 0 0" size="0.01" group="1" rgba="1 0 0 1" />
     </body>
