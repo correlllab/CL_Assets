@@ -864,11 +864,11 @@
     <parent link="torso_link"/>
     <child link="camera_link"/>
   </joint>
-  <link name="lidar_link"></link>
-  <joint name="lidar_joint" type="fixed">
+  <link name="livox_link"></link>
+  <joint name="livox_joint" type="fixed">
     <origin xyz="0.04874 0 0.67980" rpy="0 0.24015730507441985 0"/>
     <parent link="torso_link"/>
-    <child link="lidar_link"/>
+    <child link="livox_link"/>
   </joint>
 
   <!-- ════ MAGPIE GRIPPERS (lumped rigid bodies, no joints) ════ -->
