@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!-- Standalone magpie gripper, extracted from h1_2_magpie.urdf (the rg_* subtree;
+     rg_/lg_ grippers are geometrically identical). Prefixes stripped, rooted at
+     `mount`, wrist mount_joint dropped. Meshes resolve to ../meshes/magpie/ (mm,
+     scaled to m). For GraspGenX gripper_config_wizard.py. -->
+<robot name="magpie">
+
+  <material name="dark"><color rgba="0.1 0.1 0.1 1"/></material>
+
+  <!-- adapter plate / gripper base (root) -->
+  <link name="mount">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/mount.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/mount.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+
+  <link name="base_bot">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/base_bot.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/base_bot.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="base_bot_joint" type="fixed"><origin xyz="0 0 0" rpy="0 0 0"/><parent link="mount"/><child link="base_bot"/></joint>
+
+  <link name="base_top">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/base_top.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/base_top.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="base_top_joint" type="fixed"><origin xyz="0 0 0" rpy="0 0 0"/><parent link="base_bot"/><child link="base_top"/></joint>
+
+  <!-- left finger linkage: crank (driven) -> finger -> rocker -->
+  <link name="left_crank">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="-0.00175 -0.038 -0.069" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/left_crank.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="-0.00175 -0.038 -0.069" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/left_crank.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="left_hinge_1" type="revolute"><origin xyz="0.00175 0.038 0.069" rpy="0 0 0"/><parent link="base_top"/><child link="left_crank"/><axis xyz="1 0 0"/><limit lower="-0.035" upper="2.05" effort="10" velocity="3.14"/></joint>
+
+  <link name="left_finger">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="0.00675 -0.077824 -0.089953" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/left_finger_eflesh.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0.00675 -0.077824 -0.089953" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/left_finger_eflesh.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="left_hinge_2" type="continuous"><origin xyz="-0.0085 0.039824 0.020953" rpy="0 0 0"/><parent link="left_crank"/><child link="left_finger"/><axis xyz="1 0 0"/></joint>
+
+  <link name="left_rocker">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="0.00675 -0.099824 -0.085954" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/left_rocker.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0.00675 -0.099824 -0.085954" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/left_rocker.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="left_hinge_3" type="continuous"><origin xyz="0 0.022 -0.003999" rpy="0 0 0"/><parent link="left_finger"/><child link="left_rocker"/><axis xyz="1 0 0"/></joint>
+
+  <!-- right finger linkage: crank (driven) -> finger -> rocker -->
+  <link name="right_crank">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="-0.00175 0.038 -0.069" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/right_crank.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="-0.00175 0.038 -0.069" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/right_crank.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="right_hinge_1" type="revolute"><origin xyz="0.00175 -0.038 0.069" rpy="0 0 0"/><parent link="base_top"/><child link="right_crank"/><axis xyz="1 0 0"/><limit lower="-2.05" upper="0.035" effort="10" velocity="3.14"/></joint>
+
+  <link name="right_finger">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="0.00675 0.077824 -0.089953" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/right_finger_eflesh.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0.00675 0.077824 -0.089953" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/right_finger_eflesh.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="right_hinge_2" type="continuous"><origin xyz="-0.0085 -0.039824 0.020953" rpy="0 0 0"/><parent link="right_crank"/><child link="right_finger"/><axis xyz="1 0 0"/></joint>
+
+  <link name="right_rocker">
+    <inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial>
+    <visual><origin xyz="0.00675 0.099824 -0.085954" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/right_rocker.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"/></visual>
+    <collision><origin xyz="0.00675 0.099824 -0.085954" rpy="0 0 -1.5708"/><geometry><mesh filename="../meshes/magpie/right_rocker.stl" scale="0.001 0.001 0.001"/></geometry></collision>
+  </link>
+  <joint name="right_hinge_3" type="continuous"><origin xyz="0 -0.022 -0.003999" rpy="0 0 0"/><parent link="right_finger"/><child link="right_rocker"/><axis xyz="1 0 0"/></joint>
+
+</robot>

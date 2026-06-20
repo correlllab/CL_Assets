@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- SIMPLIFIED standalone magpie gripper for GraspGenX, in GraspGenX convention
+     (+Z = approach, +X = finger-closing axis). The loader (graspgenx/x_grippers.py)
+     does NOT read this URDF — only config.json is required — so this is a
+     structural placeholder for the gripper_config_wizard (path A) and for
+     regenerating vis/collision meshes later. The 4-bar linkage is approximated as
+     two prismatic fingers; mesh placement is rough (the magpie meshes are authored
+     in the native frame where closing is along Y, reoriented here by 90deg about Z).
+     Meshes are resolved relative to this file (CL_Assets/meshes/magpie). -->
+<robot name="magpie">
+  <link name="base">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5707963"/>
+      <geometry>
+        <mesh filename="../../meshes/magpie/mount.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5707963"/>
+      <geometry>
+        <mesh filename="../../meshes/magpie/base_bot.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5707963"/>
+      <geometry>
+        <mesh filename="../../meshes/magpie/base_top.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="left_finger">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5707963"/>
+      <geometry>
+        <mesh filename="../../meshes/magpie/left_finger_combined.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_finger">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5707963"/>
+      <geometry>
+        <mesh filename="../../meshes/magpie/right_finger_combined.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Fingers close along +/-X (GraspGenX convention). Limits span the ~0.108 m
+       open jaw (0.054 m per side) to 0 (closed). -->
+  <joint name="left_joint_0" type="prismatic">
+    <parent link="base"/>
+    <child link="left_finger"/>
+    <origin xyz="0 0 0.09" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0.0" upper="0.054" effort="50" velocity="0.1"/>
+  </joint>
+  <joint name="right_joint_0" type="prismatic">
+    <parent link="base"/>
+    <child link="right_finger"/>
+    <origin xyz="0 0 0.09" rpy="0 0 0"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="0.0" upper="0.054" effort="50" velocity="0.1"/>
+  </joint>
+</robot>
