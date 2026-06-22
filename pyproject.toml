@@ -1,0 +1,9 @@
+[project]
+name = "cl-assets-viewers"
+version = "0.0.0"
+requires-python = "==3.12.*"
+dependencies = [
+  "pin",
+  "mujoco",
+  "meshcat-shapes",
+]
