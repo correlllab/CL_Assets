@@ -598,22 +598,18 @@
     <limit lower="-1.27" upper="1.27" effort="19" velocity="31.4"/>
   </joint>
 
-  <!-- Grasp frame at the magpie gripper closure point (position coincides with
-       MuJoCo gripper0_left_grip_site). The handless model has no gripper, so this
-       fixed frame stands in for the grasp point for FrameTask IK targets.
-       Same orientation as the wrist yaw link, pushed forward along the forearm
-       to the fingertip closure point. -->
-  <link name="left_grip_site">
+  <!-- Center of the Magpie finger pads projected onto the handless wrist. -->
+  <link name="left_grasp_frame">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="1e-6"/>
       <inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/>
     </inertial>
   </link>
-  <joint name="left_grip_site_joint" type="fixed">
-    <origin xyz="0.272 0 0.000875" rpy="0 0 0"/>
+  <joint name="left_grasp_frame_joint" type="fixed">
+    <origin xyz="0.231991 0 0.000625" rpy="0 0 0"/>
     <parent link="left_wrist_yaw_link"/>
-    <child link="left_grip_site"/>
+    <child link="left_grasp_frame"/>
   </joint>
 
   <!-- R arm -->
@@ -822,22 +818,18 @@
     <limit lower="-1.27" upper="1.27" effort="19" velocity="31.4"/>
   </joint>
 
-  <!-- Grasp frame at the magpie gripper closure point (position coincides with
-       MuJoCo gripper0_right_grip_site). The handless model has no gripper, so this
-       fixed frame stands in for the grasp point for FrameTask IK targets.
-       Same orientation as the wrist yaw link, pushed forward along the forearm
-       to the fingertip closure point. -->
-  <link name="right_grip_site">
+  <!-- Center of the Magpie finger pads projected onto the handless wrist. -->
+  <link name="right_grasp_frame">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="1e-6"/>
       <inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/>
     </inertial>
   </link>
-  <joint name="right_grip_site_joint" type="fixed">
-    <origin xyz="0.272 0 0.000875" rpy="0 0 0"/>
+  <joint name="right_grasp_frame_joint" type="fixed">
+    <origin xyz="0.231991 0 0.000625" rpy="0 0 0"/>
     <parent link="right_wrist_yaw_link"/>
-    <child link="right_grip_site"/>
+    <child link="right_grasp_frame"/>
   </joint>
 
   <!-- LOGO -->

@@ -68,7 +68,7 @@
           </body>
         </body>
       </body>
-      <body name="eef" pos="-0.004 0 0.193">
+      <body name="eef" pos="-0.00375 0 0.152991">
         <site name="grip_site" pos="0 0 0" size="0.01" rgba="1 0 0 0.5" group="4" type="sphere" />
         <site name="grip_site_cylinder" pos="0 0 0" type="cylinder" size="0.005 0.05" rgba="0 1 0 0.3" group="4" />
       </body>

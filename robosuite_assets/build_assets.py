@@ -285,9 +285,10 @@ def build_gripper(model_name, frag_path, strip_prefix=None):
     # its quat for rotation_offset) and sites named grip_site/grip_site_cylinder
     # (mobile_robot.setup_references resolves gripper.important_sites at env
     # construction; RoboCasa task metrics read grip_site's world position), so
-    # none of these can be dropped. Keep them at the grasp center but in group 4
-    # (like touch_/tip_) so they never show in the viewer or camera renders.
-    eef = ET.SubElement(mount, "body", {"name": "eef", "pos": "-0.004 0 0.193"})
+    # none of these can be dropped. Keep them at the same closed-finger grasp
+    # center as the robot-level *_grasp_frame sites but in group 4 (like
+    # touch_/tip_) so they never show in the viewer or camera renders.
+    eef = ET.SubElement(mount, "body", {"name": "eef", "pos": "-0.00375 0 0.152991"})
     ET.SubElement(eef, "site", {"name": "grip_site", "pos": "0 0 0", "size": "0.01",
                                 "rgba": "1 0 0 0.5", "group": "4", "type": "sphere"})
     ET.SubElement(eef, "site", {"name": "grip_site_cylinder", "pos": "0 0 0",

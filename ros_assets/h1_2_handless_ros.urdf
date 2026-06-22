@@ -598,6 +598,20 @@
     <limit lower="-1.27" upper="1.27" effort="19" velocity="31.4"/>
   </joint>
 
+  <!-- Center of the Magpie finger pads projected onto the handless wrist. -->
+  <link name="left_grasp_frame">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-6"/>
+      <inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/>
+    </inertial>
+  </link>
+  <joint name="left_grasp_frame_joint" type="fixed">
+    <origin xyz="0.231991 0 0.000625" rpy="0 0 0"/>
+    <parent link="left_wrist_yaw_link"/>
+    <child link="left_grasp_frame"/>
+  </joint>
+
   <!-- R arm -->
   <link name="right_shoulder_pitch_link">
     <inertial>
@@ -802,6 +816,20 @@
     <child link="right_wrist_yaw_link"/>
     <axis xyz="0 0 1"/>
     <limit lower="-1.27" upper="1.27" effort="19" velocity="31.4"/>
+  </joint>
+
+  <!-- Center of the Magpie finger pads projected onto the handless wrist. -->
+  <link name="right_grasp_frame">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-6"/>
+      <inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/>
+    </inertial>
+  </link>
+  <joint name="right_grasp_frame_joint" type="fixed">
+    <origin xyz="0.231991 0 0.000625" rpy="0 0 0"/>
+    <parent link="right_wrist_yaw_link"/>
+    <child link="right_grasp_frame"/>
   </joint>
 
   <!-- LOGO -->

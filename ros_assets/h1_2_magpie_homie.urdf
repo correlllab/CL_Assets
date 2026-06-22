@@ -953,6 +953,18 @@
     <parent link="right_wrist_yaw_link"/>
     <child link="magpie_gripper"/>
   </joint>
+  <link name="right_grasp_frame">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-6"/>
+      <inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/>
+    </inertial>
+  </link>
+  <joint name="right_grasp_frame_joint" type="fixed">
+    <origin xyz="0.231991 0 0.000625" rpy="0 0 0"/>
+    <parent link="right_wrist_yaw_link"/>
+    <child link="right_grasp_frame"/>
+  </joint>
   <link name="magpie_gripper_L">
     <inertial>
       <origin xyz="-0.004188 -0.000000 0.067922" rpy="0 0 0"/>
@@ -1033,5 +1045,17 @@
     <origin xyz="0.07900000 0.00000000 -0.00312500" rpy="3.14159265 1.57079613 3.14159265"/>
     <parent link="left_wrist_yaw_link"/>
     <child link="magpie_gripper_L"/>
+  </joint>
+  <link name="left_grasp_frame">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-6"/>
+      <inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/>
+    </inertial>
+  </link>
+  <joint name="left_grasp_frame_joint" type="fixed">
+    <origin xyz="0.231991 0 0.000625" rpy="0 0 0"/>
+    <parent link="left_wrist_yaw_link"/>
+    <child link="left_grasp_frame"/>
   </joint>
 </robot>
