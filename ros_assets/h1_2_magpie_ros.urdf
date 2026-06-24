@@ -857,7 +857,7 @@
   <link name="right_grasp_frame"><inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="1e-6"/><inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/></inertial></link>
   <joint name="right_grasp_frame_joint" type="fixed"><origin xyz="0.231991 0 0.000625" rpy="0 0 0"/><parent link="right_wrist_yaw_link"/><child link="right_grasp_frame"/></joint>
   <link name="right_graspgenx_frame"><inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="1e-6"/><inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/></inertial></link>
-  <joint name="right_graspgenx_frame_joint" type="fixed"><origin xyz="0.0 0 0.000" rpy="1.5708 0 1.5708 "/><parent link="right_wrist_yaw_link"/><child link="right_graspgenx_frame"/></joint>
+  <joint name="right_graspgenx_frame_joint" type="fixed"><origin xyz="0.117415 0 -0.001613" rpy="1.5708 0 1.5708"/><parent link="right_wrist_yaw_link"/><child link="right_graspgenx_frame"/></joint>
   
   <link name="rg_base_bot"><inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial><visual><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="package://h12_ros2_model/assets/h1_2/meshes/magpie/base_bot.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"><color rgba="0.1 0.1 0.1 1"/></material></visual><collision><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="package://h12_ros2_model/assets/h1_2/meshes/magpie/base_bot.stl" scale="0.001 0.001 0.001"/></geometry></collision></link>
   <joint name="rg_base_bot_joint" type="fixed"><origin xyz="0 0 0" rpy="0 0 0"/><parent link="rg_mount"/><child link="rg_base_bot"/></joint>
@@ -883,7 +883,7 @@
   <link name="left_grasp_frame"><inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="1e-6"/><inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/></inertial></link>
   <joint name="left_grasp_frame_joint" type="fixed"><origin xyz="0.231991 0 0.000625" rpy="0 0 0"/><parent link="left_wrist_yaw_link"/><child link="left_grasp_frame"/></joint>
   <link name="left_graspgenx_frame"><inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="1e-6"/><inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/></inertial></link>
-  <joint name="left_graspgenx_frame_joint" type="fixed"><origin xyz="0.0 0 0.0000" rpy="1.5708 0 1.5708"/><parent link="left_wrist_yaw_link"/><child link="left_graspgenx_frame"/></joint>
+  <joint name="left_graspgenx_frame_joint" type="fixed"><origin xyz="0.117415 0 -0.001613" rpy="1.5708 0 1.5708"/><parent link="left_wrist_yaw_link"/><child link="left_graspgenx_frame"/></joint>
   
   <link name="lg_base_bot"><inertial><origin xyz="0 0 0" rpy="0 0 0"/><mass value="0.05"/><inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/></inertial><visual><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="package://h12_ros2_model/assets/h1_2/meshes/magpie/base_bot.stl" scale="0.001 0.001 0.001"/></geometry><material name="dark"><color rgba="0.1 0.1 0.1 1"/></material></visual><collision><origin xyz="0 0 0" rpy="0 0 -1.5708"/><geometry><mesh filename="package://h12_ros2_model/assets/h1_2/meshes/magpie/base_bot.stl" scale="0.001 0.001 0.001"/></geometry></collision></link>
   <joint name="lg_base_bot_joint" type="fixed"><origin xyz="0 0 0" rpy="0 0 0"/><parent link="lg_mount"/><child link="lg_base_bot"/></joint>
