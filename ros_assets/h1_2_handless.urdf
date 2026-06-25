@@ -620,7 +620,7 @@
     </inertial>
   </link>
   <joint name="left_graspgen_frame_joint" type="fixed">
-    <origin xyz="0.117415 0 -0.001613" rpy="1.5708 0 1.5708"/>
+    <origin xyz="0.117415 0 -0.001613" rpy="-1.5708 0 -1.5708"/>
     <parent link="left_wrist_yaw_link"/>
     <child link="left_graspgenx_frame"/>
   </joint>
@@ -855,7 +855,7 @@
     </inertial>
   </link>
   <joint name="right_graspgen_frame_joint" type="fixed">
-    <origin xyz="0.117415 0 -0.001613" rpy="1.5708 0 1.5708"/>
+    <origin xyz="0.117415 0 -0.001613" rpy="-1.5708 0 -1.5708"/>
     <parent link="right_wrist_yaw_link"/>
     <child link="right_graspgenx_frame"/>
   </joint>
