@@ -36,18 +36,35 @@ def _resolve_frames(model, frame_names):
     return resolved
 
 
-def view_urdf(filename, frame_names=None):
+def _viewer_root_name(filename, fallback):
+    stem = os.path.splitext(os.path.basename(filename))[0]
+    return stem or fallback
+
+
+def _load_urdf(filename):
     # package dir as parent folder
     model_path = os.path.dirname(os.path.abspath(filename))
 
-    # load model
     model, visual, collision = pin.buildModelsFromUrdf(
         filename,
-        package_dirs=model_path
+        package_dirs=model_path,
     )
+    return model, visual, collision
+
+
+def view_urdf(filename, frame_names=None, overlay_filename=None):
+    model, visual, collision = _load_urdf(filename)
     viz = MeshcatVisualizer(model, visual, collision)
     viz.initViewer()
-    viz.loadViewerModel()
+    viz.loadViewerModel(_viewer_root_name(filename, "robot"))
+
+    overlay_viz = None
+    overlay_model = None
+    if overlay_filename:
+        overlay_model, overlay_visual, overlay_collision = _load_urdf(overlay_filename)
+        overlay_viz = MeshcatVisualizer(overlay_model, overlay_visual, overlay_collision)
+        overlay_viz.initViewer(viewer=viz.viewer)
+        overlay_viz.loadViewerModel(_viewer_root_name(overlay_filename, "overlay"))
 
     frame_nodes = []
     if frame_names:
@@ -62,6 +79,10 @@ def view_urdf(filename, frame_names=None):
         # display robot at neutral configuration
         viz.display(q)
 
+        if overlay_viz is not None and overlay_model is not None:
+            overlay_q = pin.neutral(overlay_model)
+            overlay_viz.display(overlay_q)
+
         if frame_nodes:
             pin.forwardKinematics(model, data, q)
             pin.updateFramePlacements(model, data)
@@ -71,6 +92,7 @@ def view_urdf(filename, frame_names=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Visualize URDF model using Meshcat')
     parser.add_argument('filename', type=str, help='URDF filename')
+    parser.add_argument('overlay_filename', nargs='?', default=None, help='Optional second URDF filename to overlay')
     parser.add_argument('--frames', nargs='+', default=[], help='Frame names to show in Meshcat')
     args = parser.parse_args()
-    view_urdf(args.filename, args.frames)
+    view_urdf(args.filename, args.frames, args.overlay_filename)
