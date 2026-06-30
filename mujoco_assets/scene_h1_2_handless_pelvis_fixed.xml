@@ -1,0 +1,7 @@
+<mujoco model="h1_2 handless pelvis fixed scene">
+  <include file="scene_h1_2_handless.xml"/>
+
+  <equality>
+    <weld body1="pelvis" body2="world"/>
+  </equality>
+</mujoco>

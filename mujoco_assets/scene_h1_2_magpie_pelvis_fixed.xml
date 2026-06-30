@@ -1,0 +1,7 @@
+<mujoco model="h1_2 magpie pelvis fixed scene">
+  <include file="scene_h1_2_magpie.xml"/>
+
+  <equality>
+    <weld body1="pelvis" body2="world"/>
+  </equality>
+</mujoco>

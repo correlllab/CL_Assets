@@ -1,0 +1,3 @@
+<mujoco model="h1_2 magpie scene">
+  <include file="h1_2_magpie.xml"/>
+</mujoco>
