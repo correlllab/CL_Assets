@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SRDF fragment: disable collisions for lower body, sensors, and handless grasp frames -->
+<!-- SRDF fragment: disable collisions for lower body, sensors, and Magpie grasp frames -->
 <robot name="h1_2_sphere">
 
   <!-- disable_collisions entries -->
@@ -52,6 +52,7 @@
   <disable_collisions link1="world" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="world" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="world" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="world" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="world" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="world" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="world" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -61,6 +62,7 @@
   <disable_collisions link1="world" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="world" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="world" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="world" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="pelvis" link2="world" reason="Never"/>
   <disable_collisions link1="pelvis" link2="left_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="pelvis" link2="left_hip_pitch_link" reason="Never"/>
@@ -110,6 +112,7 @@
   <disable_collisions link1="pelvis" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="pelvis" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="pelvis" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -119,6 +122,7 @@
   <disable_collisions link1="pelvis" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="pelvis" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="left_hip_pitch_link" reason="Never"/>
@@ -168,6 +172,7 @@
   <disable_collisions link1="left_hip_yaw_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_hip_yaw_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -177,6 +182,7 @@
   <disable_collisions link1="left_hip_yaw_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_yaw_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_hip_yaw_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -226,6 +232,7 @@
   <disable_collisions link1="left_hip_pitch_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_hip_pitch_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -235,6 +242,7 @@
   <disable_collisions link1="left_hip_pitch_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_pitch_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_hip_pitch_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -284,6 +292,7 @@
   <disable_collisions link1="left_hip_roll_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_hip_roll_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -293,6 +302,7 @@
   <disable_collisions link1="left_hip_roll_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_hip_roll_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_hip_roll_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -342,6 +352,7 @@
   <disable_collisions link1="left_knee_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_knee_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -351,6 +362,7 @@
   <disable_collisions link1="left_knee_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_knee_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_knee_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -400,6 +412,7 @@
   <disable_collisions link1="left_ankle_pitch_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_ankle_pitch_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -409,6 +422,7 @@
   <disable_collisions link1="left_ankle_pitch_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_pitch_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_ankle_pitch_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -458,6 +472,7 @@
   <disable_collisions link1="left_ankle_roll_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_ankle_roll_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -467,6 +482,7 @@
   <disable_collisions link1="left_ankle_roll_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_ankle_roll_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_ankle_roll_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -516,6 +532,7 @@
   <disable_collisions link1="right_hip_yaw_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_hip_yaw_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -525,6 +542,7 @@
   <disable_collisions link1="right_hip_yaw_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_yaw_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_hip_yaw_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -574,6 +592,7 @@
   <disable_collisions link1="right_hip_pitch_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_hip_pitch_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -583,6 +602,7 @@
   <disable_collisions link1="right_hip_pitch_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_pitch_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_hip_pitch_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -632,6 +652,7 @@
   <disable_collisions link1="right_hip_roll_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_hip_roll_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -641,6 +662,7 @@
   <disable_collisions link1="right_hip_roll_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_hip_roll_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_hip_roll_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -690,6 +712,7 @@
   <disable_collisions link1="right_knee_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_knee_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -699,6 +722,7 @@
   <disable_collisions link1="right_knee_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_knee_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_knee_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -748,6 +772,7 @@
   <disable_collisions link1="right_ankle_pitch_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_ankle_pitch_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -757,6 +782,7 @@
   <disable_collisions link1="right_ankle_pitch_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_ankle_pitch_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -806,6 +832,7 @@
   <disable_collisions link1="right_ankle_roll_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_ankle_roll_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -815,6 +842,7 @@
   <disable_collisions link1="right_ankle_roll_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_ankle_roll_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_ankle_roll_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="world" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="pelvis" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="left_hip_yaw_link" reason="Never"/>
@@ -864,6 +892,7 @@
   <disable_collisions link1="left_grasp_frame" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_grasp_frame" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -873,6 +902,7 @@
   <disable_collisions link1="left_grasp_frame" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_grasp_frame" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_grasp_frame" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="world" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="pelvis" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="left_hip_yaw_link" reason="Never"/>
@@ -922,6 +952,7 @@
   <disable_collisions link1="right_grasp_frame" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_grasp_frame" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -931,6 +962,7 @@
   <disable_collisions link1="right_grasp_frame" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_grasp_frame" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_grasp_frame" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="logo_link" link2="world" reason="Never"/>
   <disable_collisions link1="logo_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="logo_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -980,6 +1012,7 @@
   <disable_collisions link1="logo_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="logo_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="logo_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="logo_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="logo_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="logo_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="logo_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -989,6 +1022,7 @@
   <disable_collisions link1="logo_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="logo_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="logo_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="logo_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="imu_link" link2="world" reason="Never"/>
   <disable_collisions link1="imu_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="imu_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -1038,6 +1072,7 @@
   <disable_collisions link1="imu_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="imu_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="imu_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="imu_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="imu_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="imu_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="imu_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -1047,6 +1082,7 @@
   <disable_collisions link1="imu_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="imu_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="imu_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="imu_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="world" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -1096,6 +1132,7 @@
   <disable_collisions link1="head_camera_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="head_camera_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -1105,6 +1142,7 @@
   <disable_collisions link1="head_camera_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="head_camera_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="head_camera_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="livox_link" link2="world" reason="Never"/>
   <disable_collisions link1="livox_link" link2="pelvis" reason="Never"/>
   <disable_collisions link1="livox_link" link2="left_hip_yaw_link" reason="Never"/>
@@ -1154,6 +1192,7 @@
   <disable_collisions link1="livox_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="livox_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="livox_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="livox_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="livox_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="livox_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="livox_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -1163,6 +1202,7 @@
   <disable_collisions link1="livox_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="livox_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="livox_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="livox_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="world" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="pelvis" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="left_hip_yaw_link" reason="Never"/>
@@ -1212,6 +1252,7 @@
   <disable_collisions link1="pelvis_sphere1" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="pelvis_sphere1" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -1221,6 +1262,7 @@
   <disable_collisions link1="pelvis_sphere1" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere1" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="pelvis_sphere1" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="world" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="pelvis" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="left_hip_yaw_link" reason="Never"/>
@@ -1270,6 +1312,7 @@
   <disable_collisions link1="pelvis_sphere2" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="pelvis_sphere2" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -1279,6 +1322,7 @@
   <disable_collisions link1="pelvis_sphere2" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="pelvis_sphere2" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="pelvis_sphere2" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="torso_link" link2="torso_link_sphere1" reason="Never"/>
   <disable_collisions link1="torso_link" link2="torso_link_sphere2" reason="Never"/>
   <disable_collisions link1="torso_link" link2="torso_link_sphere3" reason="Never"/>
@@ -1301,6 +1345,8 @@
   <disable_collisions link1="left_wrist_roll_link" link2="left_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_wrist_yaw_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link_sphere1" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link" link2="right_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_shoulder_roll_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_shoulder_yaw_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
@@ -1313,6 +1359,8 @@
   <disable_collisions link1="right_wrist_roll_link" link2="right_wrist_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_wrist_pitch_link" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_wrist_yaw_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_wrist_yaw_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
+  <disable_collisions link1="right_wrist_yaw_link_sphere1" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="torso_link" link2="left_shoulder_pitch_link" reason="Never"/>
   <disable_collisions link1="torso_link" link2="left_shoulder_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="torso_link_sphere1" link2="left_shoulder_pitch_link" reason="Never"/>
@@ -1363,8 +1411,10 @@
   <disable_collisions link1="left_wrist_roll_link_sphere1" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="left_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link_sphere1" link2="left_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link_sphere1" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link_sphere1" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link" link2="right_shoulder_roll_link" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link" link2="right_shoulder_roll_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link_sphere1" link2="right_shoulder_roll_link" reason="Never"/>
@@ -1395,8 +1445,10 @@
   <disable_collisions link1="right_wrist_roll_link_sphere1" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_wrist_pitch_link" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="right_wrist_pitch_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_wrist_pitch_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_wrist_pitch_link_sphere1" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="right_wrist_pitch_link_sphere1" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_wrist_pitch_link_sphere1" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_shoulder_pitch_link" link2="left_shoulder_yaw_link" reason="Never"/>
   <disable_collisions link1="left_shoulder_pitch_link" link2="left_shoulder_yaw_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_shoulder_pitch_link" link2="left_shoulder_yaw_link_sphere2" reason="Never"/>
@@ -1423,8 +1475,10 @@
   <disable_collisions link1="left_elbow_link_sphere1" link2="left_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link" link2="left_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link_sphere1" link2="left_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link_sphere1" link2="left_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link_sphere1" link2="left_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link" link2="right_shoulder_yaw_link" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link" link2="right_shoulder_yaw_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link" link2="right_shoulder_yaw_link_sphere2" reason="Never"/>
@@ -1451,7 +1505,9 @@
   <disable_collisions link1="right_elbow_link_sphere1" link2="right_wrist_pitch_link_sphere1" reason="Never"/>
   <disable_collisions link1="right_wrist_roll_link" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="right_wrist_roll_link" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_wrist_roll_link" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
   <disable_collisions link1="right_wrist_roll_link_sphere1" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="right_wrist_roll_link_sphere1" link2="right_wrist_yaw_link_sphere1" reason="Never"/>
+  <disable_collisions link1="right_wrist_roll_link_sphere1" link2="right_wrist_yaw_link_sphere2" reason="Never"/>
 
 </robot>

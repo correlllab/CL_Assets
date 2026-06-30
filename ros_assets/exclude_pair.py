@@ -1,3 +1,9 @@
+from pathlib import Path
+
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+
 # disable lower body links and hand links
 disabled_links = [
     'pelvis', 'imu_link',
@@ -57,7 +63,7 @@ enabled_links = [
     'right_wrist_roll_link', 'right_wrist_pitch_link', 'right_wrist_yaw_link'
 ]
 
-output_file = './assets/h1_2/h1_2_collision.srdf'
+output_file = SCRIPT_DIR / 'h1_2_collision.srdf'
 
 with open(output_file, "w") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n')

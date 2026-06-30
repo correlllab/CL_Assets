@@ -4,8 +4,8 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 
-urdf_file = SCRIPT_DIR / 'h1_2_handless_sphere.urdf'
-output_file = SCRIPT_DIR / 'h1_2_handless_sphere_collision.srdf'
+urdf_file = SCRIPT_DIR / 'h1_2_magpie_sphere.urdf'
+output_file = SCRIPT_DIR / 'h1_2_magpie_sphere_collision.srdf'
 
 
 def read_urdf_links(filename):
@@ -39,6 +39,9 @@ def write_group_pair_collisions(file, group1, group2):
 
 all_links = read_urdf_links(urdf_file)
 
+# Arm links stay unchanged. The Magpie gripper is represented for collision by
+# the wrist_yaw_link spheres, so the enabled arm chain does not include grasp or
+# finger links.
 left_arm_links = [
     'left_shoulder_pitch_link',
     'left_shoulder_roll_link',
@@ -64,14 +67,15 @@ enabled_links = set()
 for link in enabled_base_links:
     enabled_links.update(link_group(link, all_links))
 
-# Everything outside the torso/arm collision model is disabled, including lower
-# body links, sensors, and grasp-frame helper links present in the URDF.
+# Everything not in the torso/arm collision model is disabled, including lower
+# body links, sensors, grasp frames, and any Magpie-specific links present in the
+# URDF.
 disabled_links = [link for link in all_links if link not in enabled_links]
 
 output_file.parent.mkdir(parents=True, exist_ok=True)
 with open(output_file, 'w') as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-    f.write('<!-- SRDF fragment: disable collisions for lower body, sensors, and handless grasp frames -->\n')
+    f.write('<!-- SRDF fragment: disable collisions for lower body, sensors, and Magpie grasp frames -->\n')
     f.write('<robot name="h1_2_sphere">\n\n')
     f.write('  <!-- disable_collisions entries -->\n')
 
@@ -81,7 +85,7 @@ with open(output_file, 'w') as f:
             write_disable_pair(f, disabled_link, other_link)
 
     # Disable self-collisions inside each enabled collision group: a link and
-    # all sphere links that actually exist for it in the handless sphere URDF.
+    # all sphere links that actually exist for it in the Magpie sphere URDF.
     write_group_self_collisions(f, link_group('torso_link', all_links))
     for link in left_arm_links:
         write_group_self_collisions(f, link_group(link, all_links))
