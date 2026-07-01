@@ -111,8 +111,7 @@ def apply_joint_dynamics(joint, attrs):
 # robosuite's _add_default_name_filter auto-names unnamed geoms via
 # group_mapping = {None:"col", "0":"col", "1":"vis"} and KeyErrors on any other
 # group. Our source uses the legacy MuJoCo-viewer convention (visual=2,
-# collision=3). Remap to robosuite's {0=col, 1=vis}. Group is purely
-# organizational; physics is governed by contype/conaffinity (untouched).
+# collision=3). Remap to robosuite's {0=col, 1=vis}.
 _GEOM_GROUP_REMAP = {"2": "1", "3": "0"}
 
 
@@ -121,6 +120,16 @@ def remap_geom_groups(root):
         grp = g.get("group")
         if grp in _GEOM_GROUP_REMAP:
             g.set("group", _GEOM_GROUP_REMAP[grp])
+        # Visual geoms (final group "1") must NEVER collide: force contype=0/conaffinity=0
+        # on every group="1" geom -- those copied from the source AND ones emitted by this
+        # script (e.g. the h12_mount visual mesh) -- so visual meshes can't hit the floor
+        # regardless of the source's attrs. A missing contype=0 on the ankle/foot visuals
+        # was the FAME-stand root cause (source regression CL_Assets 83d9bf4); enforcing it
+        # here keeps the generated robot.xml correct even if the source regresses again.
+        # Collision geoms (group "0") keep their source contype/conaffinity untouched.
+        if g.get("group") == "1":
+            g.set("contype", "0")
+            g.set("conaffinity", "0")
 
 
 # --------------------------------------------------------------------------- #
