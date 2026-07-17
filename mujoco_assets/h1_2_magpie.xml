@@ -332,33 +332,45 @@
   </equality>
 
   <actuator>
-    <motor name="left_hip_yaw_joint" joint="left_hip_yaw_joint"/>
-    <motor name="left_hip_pitch_joint" joint="left_hip_pitch_joint"/>
-    <motor name="left_hip_roll_joint" joint="left_hip_roll_joint"/>
-    <motor name="left_knee_joint" joint="left_knee_joint"/>
-    <motor name="left_ankle_pitch_joint" joint="left_ankle_pitch_joint"/>
-    <motor name="left_ankle_roll_joint" joint="left_ankle_roll_joint"/>
-    <motor name="right_hip_yaw_joint" joint="right_hip_yaw_joint"/>
-    <motor name="right_hip_pitch_joint" joint="right_hip_pitch_joint"/>
-    <motor name="right_hip_roll_joint" joint="right_hip_roll_joint"/>
-    <motor name="right_knee_joint" joint="right_knee_joint"/>
-    <motor name="right_ankle_pitch_joint" joint="right_ankle_pitch_joint"/>
-    <motor name="right_ankle_roll_joint" joint="right_ankle_roll_joint"/>
-    <motor name="torso_joint" joint="torso_joint"/>
-    <motor name="left_shoulder_pitch_joint" joint="left_shoulder_pitch_joint"/>
-    <motor name="left_shoulder_roll_joint" joint="left_shoulder_roll_joint"/>
-    <motor name="left_shoulder_yaw_joint" joint="left_shoulder_yaw_joint"/>
-    <motor name="left_elbow_joint" joint="left_elbow_joint"/>
-    <motor name="left_wrist_roll_joint" joint="left_wrist_roll_joint"/>
-    <motor name="left_wrist_pitch_joint" joint="left_wrist_pitch_joint"/>
-    <motor name="left_wrist_yaw_joint" joint="left_wrist_yaw_joint"/>
-    <motor name="right_shoulder_pitch_joint" joint="right_shoulder_pitch_joint"/>
-    <motor name="right_shoulder_roll_joint" joint="right_shoulder_roll_joint"/>
-    <motor name="right_shoulder_yaw_joint" joint="right_shoulder_yaw_joint"/>
-    <motor name="right_elbow_joint" joint="right_elbow_joint"/>
-    <motor name="right_wrist_roll_joint" joint="right_wrist_roll_joint"/>
-    <motor name="right_wrist_pitch_joint" joint="right_wrist_pitch_joint"/>
-    <motor name="right_wrist_yaw_joint" joint="right_wrist_yaw_joint"/>
+    <!-- ctrlrange source: the Unitree H1-2 rated joint torque limits (N-m), taken
+         from the official Unitree H1-2 MJCF:
+           https://github.com/unitreerobotics/unitree_ros/blob/master/robots/h1_2_description/h1_2.xml
+         Each value below is copied verbatim from the matching joint's
+         actuatorfrcrange (declared on the <joint> elements in the body,
+         ~lines 150-300), which are identical to the forcerange values in the
+         h1_2 <default> position classes above (lines 18-42) — all three trace
+         back to that upstream file.
+         Because these motors are gear=1 (torque = ctrl), ctrlrange equals the
+         joint torque clamp MuJoCo already applies via actuatorfrcrange, so adding
+         it here is behavior-neutral; it is only needed because some consumers
+         (e.g. MJPC) require an explicit ctrlrange on every actuator. -->
+    <motor name="left_hip_yaw_joint" joint="left_hip_yaw_joint" ctrlrange="-200 200"/>
+    <motor name="left_hip_pitch_joint" joint="left_hip_pitch_joint" ctrlrange="-200 200"/>
+    <motor name="left_hip_roll_joint" joint="left_hip_roll_joint" ctrlrange="-200 200"/>
+    <motor name="left_knee_joint" joint="left_knee_joint" ctrlrange="-300 300"/>
+    <motor name="left_ankle_pitch_joint" joint="left_ankle_pitch_joint" ctrlrange="-60 60"/>
+    <motor name="left_ankle_roll_joint" joint="left_ankle_roll_joint" ctrlrange="-40 40"/>
+    <motor name="right_hip_yaw_joint" joint="right_hip_yaw_joint" ctrlrange="-200 200"/>
+    <motor name="right_hip_pitch_joint" joint="right_hip_pitch_joint" ctrlrange="-200 200"/>
+    <motor name="right_hip_roll_joint" joint="right_hip_roll_joint" ctrlrange="-200 200"/>
+    <motor name="right_knee_joint" joint="right_knee_joint" ctrlrange="-300 300"/>
+    <motor name="right_ankle_pitch_joint" joint="right_ankle_pitch_joint" ctrlrange="-60 60"/>
+    <motor name="right_ankle_roll_joint" joint="right_ankle_roll_joint" ctrlrange="-40 40"/>
+    <motor name="torso_joint" joint="torso_joint" ctrlrange="-200 200"/>
+    <motor name="left_shoulder_pitch_joint" joint="left_shoulder_pitch_joint" ctrlrange="-40 40"/>
+    <motor name="left_shoulder_roll_joint" joint="left_shoulder_roll_joint" ctrlrange="-40 40"/>
+    <motor name="left_shoulder_yaw_joint" joint="left_shoulder_yaw_joint" ctrlrange="-18 18"/>
+    <motor name="left_elbow_joint" joint="left_elbow_joint" ctrlrange="-18 18"/>
+    <motor name="left_wrist_roll_joint" joint="left_wrist_roll_joint" ctrlrange="-19 19"/>
+    <motor name="left_wrist_pitch_joint" joint="left_wrist_pitch_joint" ctrlrange="-19 19"/>
+    <motor name="left_wrist_yaw_joint" joint="left_wrist_yaw_joint" ctrlrange="-19 19"/>
+    <motor name="right_shoulder_pitch_joint" joint="right_shoulder_pitch_joint" ctrlrange="-40 40"/>
+    <motor name="right_shoulder_roll_joint" joint="right_shoulder_roll_joint" ctrlrange="-40 40"/>
+    <motor name="right_shoulder_yaw_joint" joint="right_shoulder_yaw_joint" ctrlrange="-18 18"/>
+    <motor name="right_elbow_joint" joint="right_elbow_joint" ctrlrange="-18 18"/>
+    <motor name="right_wrist_roll_joint" joint="right_wrist_roll_joint" ctrlrange="-19 19"/>
+    <motor name="right_wrist_pitch_joint" joint="right_wrist_pitch_joint" ctrlrange="-19 19"/>
+    <motor name="right_wrist_yaw_joint" joint="right_wrist_yaw_joint" ctrlrange="-19 19"/>
 
 
     <position name="left_finger_actuator" joint="left_hinge_1" ctrlrange="-0.035 2.70" kp="10"/>
