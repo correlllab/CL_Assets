@@ -24,8 +24,8 @@
     <mesh name="screw_head" file="../battery/meshes/screw_head.stl" scale="0.001 0.001 0.001" />
     <material name="room_wall" rgba="0.74 0.88 0.72 1" specular="0.1" shininess="0.05" />
     <texture type="skybox" builtin="gradient" rgb1="0.78 0.90 0.78" rgb2="0.55 0.75 0.58" width="512" height="3072"/>
-    <texture type="2d" name="groundplane" builtin="flat" mark="edge"
-             rgb1="0.62 0.58 0.52" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <!-- <texture type="2d" name="groundplane" builtin="flat" mark="edge"
+             rgb1="0.62 0.58 0.52" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/> -->
 
   </asset>
 
