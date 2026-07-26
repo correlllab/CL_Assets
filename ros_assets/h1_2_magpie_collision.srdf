@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SRDF fragment: disable collisions for non-robot and adjacent links -->
+<!-- SRDF fragment: disable non-robot, group-self, and near-chain collisions -->
 <robot name="h1_2_magpie">
 
   <!-- disable_collisions entries -->
@@ -541,7 +541,6 @@
   <disable_collisions link1="left_shoulder_roll_link" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="left_shoulder_roll_link" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="left_shoulder_roll_link" link2="right_knee_link" reason="Never"/>
-  <disable_collisions link1="left_shoulder_roll_link" link2="torso_link" reason="Never"/>
   <disable_collisions link1="left_shoulder_roll_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_shoulder_yaw_link" link2="left_wrist_roll_link" reason="Never"/>
   <disable_collisions link1="left_shoulder_yaw_link" link2="livox_link" reason="Never"/>
@@ -558,6 +557,15 @@
   <disable_collisions link1="left_shoulder_yaw_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="left_wrist_roll_link" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="left_wrist_yaw_link" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_base_bot" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_base_top" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_left_crank" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_left_finger" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_left_rocker" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_mount" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="left_wrist_pitch_link" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="livox_link" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="logo_link" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="pelvis" reason="Never"/>
@@ -571,6 +579,15 @@
   <disable_collisions link1="left_wrist_pitch_link" link2="right_knee_link" reason="Never"/>
   <disable_collisions link1="left_wrist_pitch_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link" link2="left_wrist_yaw_link" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_base_bot" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_base_top" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_left_crank" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_left_finger" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_left_rocker" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_mount" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="left_wrist_roll_link" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link" link2="livox_link" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link" link2="logo_link" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link" link2="pelvis" reason="Never"/>
@@ -584,7 +601,14 @@
   <disable_collisions link1="left_wrist_roll_link" link2="right_knee_link" reason="Never"/>
   <disable_collisions link1="left_wrist_roll_link" link2="world" reason="Never"/>
   <disable_collisions link1="left_wrist_yaw_link" link2="lg_base_bot" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="lg_base_top" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="lg_left_crank" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="lg_left_finger" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="lg_left_rocker" reason="Never"/>
   <disable_collisions link1="left_wrist_yaw_link" link2="lg_mount" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="left_wrist_yaw_link" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="left_wrist_yaw_link" link2="livox_link" reason="Never"/>
   <disable_collisions link1="left_wrist_yaw_link" link2="logo_link" reason="Never"/>
   <disable_collisions link1="left_wrist_yaw_link" link2="pelvis" reason="Never"/>
@@ -599,7 +623,12 @@
   <disable_collisions link1="left_wrist_yaw_link" link2="world" reason="Never"/>
   <disable_collisions link1="lg_base_bot" link2="lg_base_top" reason="Never"/>
   <disable_collisions link1="lg_base_bot" link2="lg_left_crank" reason="Never"/>
+  <disable_collisions link1="lg_base_bot" link2="lg_left_finger" reason="Never"/>
+  <disable_collisions link1="lg_base_bot" link2="lg_left_rocker" reason="Never"/>
   <disable_collisions link1="lg_base_bot" link2="lg_mount" reason="Never"/>
+  <disable_collisions link1="lg_base_bot" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="lg_base_bot" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="lg_base_bot" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="lg_base_bot" link2="livox_link" reason="Never"/>
   <disable_collisions link1="lg_base_bot" link2="logo_link" reason="Never"/>
   <disable_collisions link1="lg_base_bot" link2="pelvis" reason="Never"/>
@@ -614,9 +643,11 @@
   <disable_collisions link1="lg_base_bot" link2="world" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="lg_left_crank" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="lg_left_finger" reason="Never"/>
+  <disable_collisions link1="lg_base_top" link2="lg_left_rocker" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="lg_mount" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="lg_right_crank" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="lg_base_top" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="livox_link" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="logo_link" reason="Never"/>
   <disable_collisions link1="lg_base_top" link2="pelvis" reason="Never"/>
@@ -631,6 +662,10 @@
   <disable_collisions link1="lg_base_top" link2="world" reason="Never"/>
   <disable_collisions link1="lg_left_crank" link2="lg_left_finger" reason="Never"/>
   <disable_collisions link1="lg_left_crank" link2="lg_left_rocker" reason="Never"/>
+  <disable_collisions link1="lg_left_crank" link2="lg_mount" reason="Never"/>
+  <disable_collisions link1="lg_left_crank" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="lg_left_crank" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="lg_left_crank" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="lg_left_crank" link2="livox_link" reason="Never"/>
   <disable_collisions link1="lg_left_crank" link2="logo_link" reason="Never"/>
   <disable_collisions link1="lg_left_crank" link2="pelvis" reason="Never"/>
@@ -644,6 +679,10 @@
   <disable_collisions link1="lg_left_crank" link2="right_knee_link" reason="Never"/>
   <disable_collisions link1="lg_left_crank" link2="world" reason="Never"/>
   <disable_collisions link1="lg_left_finger" link2="lg_left_rocker" reason="Never"/>
+  <disable_collisions link1="lg_left_finger" link2="lg_mount" reason="Never"/>
+  <disable_collisions link1="lg_left_finger" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="lg_left_finger" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="lg_left_finger" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="lg_left_finger" link2="livox_link" reason="Never"/>
   <disable_collisions link1="lg_left_finger" link2="logo_link" reason="Never"/>
   <disable_collisions link1="lg_left_finger" link2="pelvis" reason="Never"/>
@@ -656,6 +695,10 @@
   <disable_collisions link1="lg_left_finger" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="lg_left_finger" link2="right_knee_link" reason="Never"/>
   <disable_collisions link1="lg_left_finger" link2="world" reason="Never"/>
+  <disable_collisions link1="lg_left_rocker" link2="lg_mount" reason="Never"/>
+  <disable_collisions link1="lg_left_rocker" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="lg_left_rocker" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="lg_left_rocker" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="lg_left_rocker" link2="livox_link" reason="Never"/>
   <disable_collisions link1="lg_left_rocker" link2="logo_link" reason="Never"/>
   <disable_collisions link1="lg_left_rocker" link2="pelvis" reason="Never"/>
@@ -668,6 +711,9 @@
   <disable_collisions link1="lg_left_rocker" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="lg_left_rocker" link2="right_knee_link" reason="Never"/>
   <disable_collisions link1="lg_left_rocker" link2="world" reason="Never"/>
+  <disable_collisions link1="lg_mount" link2="lg_right_crank" reason="Never"/>
+  <disable_collisions link1="lg_mount" link2="lg_right_finger" reason="Never"/>
+  <disable_collisions link1="lg_mount" link2="lg_right_rocker" reason="Never"/>
   <disable_collisions link1="lg_mount" link2="livox_link" reason="Never"/>
   <disable_collisions link1="lg_mount" link2="logo_link" reason="Never"/>
   <disable_collisions link1="lg_mount" link2="pelvis" reason="Never"/>
@@ -802,7 +848,12 @@
   <disable_collisions link1="pelvis" link2="world" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="rg_base_top" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="rg_left_crank" reason="Never"/>
+  <disable_collisions link1="rg_base_bot" link2="rg_left_finger" reason="Never"/>
+  <disable_collisions link1="rg_base_bot" link2="rg_left_rocker" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="rg_mount" reason="Never"/>
+  <disable_collisions link1="rg_base_bot" link2="rg_right_crank" reason="Never"/>
+  <disable_collisions link1="rg_base_bot" link2="rg_right_finger" reason="Never"/>
+  <disable_collisions link1="rg_base_bot" link2="rg_right_rocker" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="right_ankle_pitch_link" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="right_ankle_roll_link" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="right_grasp_frame" reason="Never"/>
@@ -811,13 +862,17 @@
   <disable_collisions link1="rg_base_bot" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_base_bot" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_base_bot" link2="right_wrist_roll_link" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_base_bot" link2="world" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="rg_left_crank" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="rg_left_finger" reason="Never"/>
+  <disable_collisions link1="rg_base_top" link2="rg_left_rocker" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="rg_mount" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="rg_right_crank" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="rg_right_finger" reason="Never"/>
+  <disable_collisions link1="rg_base_top" link2="rg_right_rocker" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="right_ankle_pitch_link" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="right_ankle_roll_link" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="right_grasp_frame" reason="Never"/>
@@ -826,9 +881,16 @@
   <disable_collisions link1="rg_base_top" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_base_top" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_base_top" link2="right_wrist_roll_link" reason="Never"/>
+  <disable_collisions link1="rg_base_top" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_base_top" link2="world" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="rg_left_finger" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="rg_left_rocker" reason="Never"/>
+  <disable_collisions link1="rg_left_crank" link2="rg_mount" reason="Never"/>
+  <disable_collisions link1="rg_left_crank" link2="rg_right_crank" reason="Never"/>
+  <disable_collisions link1="rg_left_crank" link2="rg_right_finger" reason="Never"/>
+  <disable_collisions link1="rg_left_crank" link2="rg_right_rocker" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="right_ankle_pitch_link" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="right_ankle_roll_link" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="right_grasp_frame" reason="Never"/>
@@ -837,8 +899,15 @@
   <disable_collisions link1="rg_left_crank" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_left_crank" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_left_crank" link2="right_wrist_roll_link" reason="Never"/>
+  <disable_collisions link1="rg_left_crank" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_left_crank" link2="world" reason="Never"/>
   <disable_collisions link1="rg_left_finger" link2="rg_left_rocker" reason="Never"/>
+  <disable_collisions link1="rg_left_finger" link2="rg_mount" reason="Never"/>
+  <disable_collisions link1="rg_left_finger" link2="rg_right_crank" reason="Never"/>
+  <disable_collisions link1="rg_left_finger" link2="rg_right_finger" reason="Never"/>
+  <disable_collisions link1="rg_left_finger" link2="rg_right_rocker" reason="Never"/>
   <disable_collisions link1="rg_left_finger" link2="right_ankle_pitch_link" reason="Never"/>
   <disable_collisions link1="rg_left_finger" link2="right_ankle_roll_link" reason="Never"/>
   <disable_collisions link1="rg_left_finger" link2="right_grasp_frame" reason="Never"/>
@@ -847,7 +916,14 @@
   <disable_collisions link1="rg_left_finger" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_left_finger" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_left_finger" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_left_finger" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_left_finger" link2="right_wrist_roll_link" reason="Never"/>
+  <disable_collisions link1="rg_left_finger" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_left_finger" link2="world" reason="Never"/>
+  <disable_collisions link1="rg_left_rocker" link2="rg_mount" reason="Never"/>
+  <disable_collisions link1="rg_left_rocker" link2="rg_right_crank" reason="Never"/>
+  <disable_collisions link1="rg_left_rocker" link2="rg_right_finger" reason="Never"/>
+  <disable_collisions link1="rg_left_rocker" link2="rg_right_rocker" reason="Never"/>
   <disable_collisions link1="rg_left_rocker" link2="right_ankle_pitch_link" reason="Never"/>
   <disable_collisions link1="rg_left_rocker" link2="right_ankle_roll_link" reason="Never"/>
   <disable_collisions link1="rg_left_rocker" link2="right_grasp_frame" reason="Never"/>
@@ -856,7 +932,13 @@
   <disable_collisions link1="rg_left_rocker" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_left_rocker" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_left_rocker" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_left_rocker" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_left_rocker" link2="right_wrist_roll_link" reason="Never"/>
+  <disable_collisions link1="rg_left_rocker" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_left_rocker" link2="world" reason="Never"/>
+  <disable_collisions link1="rg_mount" link2="rg_right_crank" reason="Never"/>
+  <disable_collisions link1="rg_mount" link2="rg_right_finger" reason="Never"/>
+  <disable_collisions link1="rg_mount" link2="rg_right_rocker" reason="Never"/>
   <disable_collisions link1="rg_mount" link2="right_ankle_pitch_link" reason="Never"/>
   <disable_collisions link1="rg_mount" link2="right_ankle_roll_link" reason="Never"/>
   <disable_collisions link1="rg_mount" link2="right_grasp_frame" reason="Never"/>
@@ -865,6 +947,8 @@
   <disable_collisions link1="rg_mount" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_mount" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_mount" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_mount" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_mount" link2="right_wrist_roll_link" reason="Never"/>
   <disable_collisions link1="rg_mount" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_mount" link2="world" reason="Never"/>
   <disable_collisions link1="rg_right_crank" link2="rg_right_finger" reason="Never"/>
@@ -877,6 +961,9 @@
   <disable_collisions link1="rg_right_crank" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_right_crank" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_right_crank" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_right_crank" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_right_crank" link2="right_wrist_roll_link" reason="Never"/>
+  <disable_collisions link1="rg_right_crank" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_right_crank" link2="world" reason="Never"/>
   <disable_collisions link1="rg_right_finger" link2="rg_right_rocker" reason="Never"/>
   <disable_collisions link1="rg_right_finger" link2="right_ankle_pitch_link" reason="Never"/>
@@ -887,6 +974,9 @@
   <disable_collisions link1="rg_right_finger" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_right_finger" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_right_finger" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_right_finger" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_right_finger" link2="right_wrist_roll_link" reason="Never"/>
+  <disable_collisions link1="rg_right_finger" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_right_finger" link2="world" reason="Never"/>
   <disable_collisions link1="rg_right_rocker" link2="right_ankle_pitch_link" reason="Never"/>
   <disable_collisions link1="rg_right_rocker" link2="right_ankle_roll_link" reason="Never"/>
@@ -896,6 +986,9 @@
   <disable_collisions link1="rg_right_rocker" link2="right_hip_roll_link" reason="Never"/>
   <disable_collisions link1="rg_right_rocker" link2="right_hip_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_right_rocker" link2="right_knee_link" reason="Never"/>
+  <disable_collisions link1="rg_right_rocker" link2="right_wrist_pitch_link" reason="Never"/>
+  <disable_collisions link1="rg_right_rocker" link2="right_wrist_roll_link" reason="Never"/>
+  <disable_collisions link1="rg_right_rocker" link2="right_wrist_yaw_link" reason="Never"/>
   <disable_collisions link1="rg_right_rocker" link2="world" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="right_ankle_roll_link" reason="Never"/>
   <disable_collisions link1="right_ankle_pitch_link" link2="right_elbow_link" reason="Never"/>
@@ -1007,7 +1100,6 @@
   <disable_collisions link1="right_shoulder_pitch_link" link2="torso_link" reason="Never"/>
   <disable_collisions link1="right_shoulder_pitch_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_shoulder_roll_link" link2="right_shoulder_yaw_link" reason="Never"/>
-  <disable_collisions link1="right_shoulder_roll_link" link2="torso_link" reason="Never"/>
   <disable_collisions link1="right_shoulder_roll_link" link2="world" reason="Never"/>
   <disable_collisions link1="right_shoulder_yaw_link" link2="right_wrist_roll_link" reason="Never"/>
   <disable_collisions link1="right_shoulder_yaw_link" link2="world" reason="Never"/>

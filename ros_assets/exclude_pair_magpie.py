@@ -1,7 +1,6 @@
 import re
 from pathlib import Path
 
-
 SCRIPT_DIR = Path(__file__).resolve().parent
 URDF_FILE = SCRIPT_DIR / 'h1_2_magpie.urdf'
 OUTPUT_FILE = SCRIPT_DIR / 'h1_2_magpie_collision.srdf'
@@ -21,10 +20,22 @@ def add_pair(pairs, link1, link2):
         pairs.add(pair_key(link1, link2))
 
 
-def add_chain_pairs(pairs, chain, skip_distance=2):
-    for index, link1 in enumerate(chain):
-        for link2 in chain[index + 1:index + 1 + skip_distance]:
+def add_group_self_collisions(pairs, group):
+    for index, link1 in enumerate(group):
+        for link2 in group[index + 1:]:
             add_pair(pairs, link1, link2)
+
+
+def add_group_pair_collisions(pairs, group1, group2):
+    for link1 in group1:
+        for link2 in group2:
+            add_pair(pairs, link1, link2)
+
+
+def add_chain_exclusions(pairs, chain, distance):
+    for index, group in enumerate(chain):
+        if index + distance < len(chain):
+            add_group_pair_collisions(pairs, group, chain[index + distance])
 
 
 all_links = read_urdf_links(URDF_FILE)
@@ -47,47 +58,46 @@ right_arm_links = [
     'right_wrist_pitch_link',
     'right_wrist_yaw_link',
 ]
-left_gripper_chains = [
-    [
-        'left_wrist_yaw_link',
-        'lg_mount',
-        'lg_base_bot',
-        'lg_base_top',
-        'lg_left_crank',
-        'lg_left_finger',
-        'lg_left_rocker',
-    ],
-    [
-        'lg_base_top',
-        'lg_right_crank',
-        'lg_right_finger',
-        'lg_right_rocker',
-    ],
+left_gripper_links = [
+    'lg_mount',
+    'lg_base_bot',
+    'lg_base_top',
+    'lg_left_crank',
+    'lg_left_finger',
+    'lg_left_rocker',
+    'lg_right_crank',
+    'lg_right_finger',
+    'lg_right_rocker',
 ]
-right_gripper_chains = [
-    [
-        'right_wrist_yaw_link',
-        'rg_mount',
-        'rg_base_bot',
-        'rg_base_top',
-        'rg_left_crank',
-        'rg_left_finger',
-        'rg_left_rocker',
-    ],
-    [
-        'rg_base_top',
-        'rg_right_crank',
-        'rg_right_finger',
-        'rg_right_rocker',
-    ],
+right_gripper_links = [
+    'rg_mount',
+    'rg_base_bot',
+    'rg_base_top',
+    'rg_left_crank',
+    'rg_left_finger',
+    'rg_left_rocker',
+    'rg_right_crank',
+    'rg_right_finger',
+    'rg_right_rocker',
 ]
-torso_and_arm_links = ['torso_link'] + left_arm_links + right_arm_links
-gripper_links = [
-    link
-    for chain in left_gripper_chains + right_gripper_chains
-    for link in chain
-]
-enabled_links = set(torso_and_arm_links + gripper_links)
+
+
+def arm_collision_groups(arm_links, gripper_links):
+    return [[link] for link in arm_links[:-1]] + [
+        [arm_links[-1], *gripper_links],
+    ]
+
+
+left_groups = arm_collision_groups(left_arm_links, left_gripper_links)
+right_groups = arm_collision_groups(right_arm_links, right_gripper_links)
+enabled_links = {
+    'torso_link',
+    *[
+        link
+        for group in left_groups + right_groups
+        for link in group
+    ],
+}
 disabled_links = [link for link in all_links if link not in enabled_links]
 
 disabled_pairs = set()
@@ -95,14 +105,18 @@ for disabled_link in disabled_links:
     for other_link in all_links:
         add_pair(disabled_pairs, disabled_link, other_link)
 
-add_chain_pairs(disabled_pairs, ['torso_link'] + left_arm_links)
-add_chain_pairs(disabled_pairs, ['torso_link'] + right_arm_links)
-for chain in left_gripper_chains + right_gripper_chains:
-    add_chain_pairs(disabled_pairs, chain)
+torso_group = ['torso_link']
+for group in [torso_group, *left_groups, *right_groups]:
+    add_group_self_collisions(disabled_pairs, group)
+
+for arm_groups in [left_groups, right_groups]:
+    add_group_pair_collisions(disabled_pairs, torso_group, arm_groups[0])
+    add_chain_exclusions(disabled_pairs, arm_groups, distance=1)
+    add_chain_exclusions(disabled_pairs, arm_groups, distance=2)
 
 OUTPUT_FILE.write_text(
     '<?xml version="1.0" encoding="UTF-8"?>\n'
-    '<!-- SRDF fragment: disable collisions for non-robot and adjacent links -->\n'
+    '<!-- SRDF fragment: disable non-robot, group-self, and near-chain collisions -->\n'
     '<robot name="h1_2_magpie">\n\n'
     '  <!-- disable_collisions entries -->\n'
     + ''.join(
