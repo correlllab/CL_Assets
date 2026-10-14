@@ -1,14 +1,13 @@
-<!-- Orange fuse block. Spawns resting on the battery top (z = 0.91 m) on the
-     robot's right, just behind the near screw column (heads at x = 0.454,
-     radius 8 mm), as close to the robot as that column allows. pos is the
-     world spawn pose; mesh files resolve against meshdir, relative to this
-     file. -->
+<!-- Orange fuse block. Spawns resting on the near-right battery module top
+     (z = 0.932 m, module edge at x = 0.496), as close to the robot as the
+     module allows. pos is the world spawn pose; mesh files resolve against
+     meshdir, relative to this file. -->
 <mujoco model="orange_fuse_block">
     <compiler angle="radian" meshdir="assets" autolimits="true"/>
 
     <asset>
-        <!-- fuse_block.stl is in mm -->
-        <mesh name="fuse_block_mesh" file="fuse_block.stl" scale="0.001 0.001 0.001"/>
+        <!-- metres, centred on the body origin; built by make_meshes.py -->
+        <mesh name="fuse_block_mesh" file="fuse_block.stl"/>
 
         <material name="orange_plastic" rgba="0.95 0.52 0.09 1.0" shininess="0.3" specular="0.2"/>
         <material name="magenta_sticker" rgba="0.88 0.15 0.55 1.0"/>
@@ -16,8 +15,8 @@
     </asset>
 
     <worldbody>
-        <!-- z = battery top 0.91 + box half-height 0.012 + 3 mm drop -->
-        <body name="orange_fuse_block" pos="0.52 -0.20 0.925">
+        <!-- z = module top 0.932 + box half-height 0.012 + 3 mm drop -->
+        <body name="orange_fuse_block" pos="0.56 -0.20 0.947">
             <freejoint name="fuse_joint"/>
 
             <!-- Box collision for contact stability; carries the full 0.047 kg -->

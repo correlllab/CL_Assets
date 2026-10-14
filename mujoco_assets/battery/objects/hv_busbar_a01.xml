@@ -1,0 +1,79 @@
+<!-- HV bus bar A01 (~0.70 m end to end, 0.470 kg). Spawns on the robot's left
+     across two battery module tops (z = 0.932 m), resting on its terminal caps
+     (lowest point 14 mm below the body origin). pos is the world spawn pose. The
+     floor, light and <option> are for viewing this file on its own; the
+     battery task merges only the body. -->
+<mujoco model="hv_busbar_a01">
+    <compiler angle="degree" inertiafromgeom="true"/>
+    <option timestep="0.002" gravity="0 0 -9.81"/>
+
+    <default>
+        <!-- group 2: the sim's viewer and cameras draw groups 1-2 only. The
+             geoms still collide; group only sets visibility. -->
+        <geom solref="0.01 1" solimp="0.95 0.99 0.001" condim="4" group="2"/>
+        <!-- Collision-enabled busbar segments (total mass distributed across main segments = 0.470 kg) -->
+        <default class="busbar_core">
+            <geom type="box" material="insulation_orange" friction="0.6 0.005 0.0001"/>
+        </default>
+        <!-- Visual/High-friction foam pads (negligible mass) -->
+        <default class="foam_pad">
+            <geom type="box" material="black_foam" friction="1.2 0.01 0.0005" mass="0.001"/>
+        </default>
+    </default>
+
+    <asset>
+        <material name="insulation_orange" rgba="0.82 0.22 0.04 1.0" shininess="0.5" specular="0.4"/>
+        <material name="terminal_yellow" rgba="0.98 0.62 0.05 1.0" shininess="0.3" specular="0.2"/>
+        <material name="black_foam" rgba="0.12 0.12 0.12 1.0" shininess="0.05" specular="0.05"/>
+        <material name="label_white" rgba="0.95 0.95 0.95 1.0" shininess="0.1"/>
+        <material name="metal_tab" rgba="0.75 0.78 0.80 1.0" shininess="0.9" specular="0.9"/>
+        <texture name="grid" type="2d" builtin="checker" rgb1=".2 .2 .2" rgb2=".3 .3 .3" width="300" height="300"/>
+        <material name="floor_mat" texture="grid" texrepeat="8 8" reflectance="0.1"/>
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" diffuse="0.8 0.8 0.8"/>
+        <geom name="floor" type="plane" size="1 1 0.01" material="floor_mat"/>
+
+        <!-- ==================== HV BUSBAR BODY ==================== -->
+        <!-- Total End-to-End Span: ~0.70m | Total Mass: 0.470 kg (470g) -->
+        <body name="hv_busbar" pos="0.88 0.40 0.949">
+            <freejoint name="busbar_freejoint"/>
+
+            <!-- 1. Left Terminal Cap & Metal Contact (X: -0.35m) -->
+            <geom name="terminal_left_cap" type="box" pos="-0.335 -0.095 0" euler="0 0 -25" size="0.022 0.018 0.014" material="terminal_yellow" mass="0.025"/>
+            <geom name="terminal_left_tab" type="cylinder" pos="-0.345 -0.100 -0.008" size="0.012 0.002" material="metal_tab" mass="0.015"/>
+
+            <!-- 2. Left Dogleg Kick-out -->
+            <geom name="seg_left_dogleg" class="busbar_core" pos="-0.292 -0.068 0" euler="0 0 35" size="0.038 0.011 0.005" mass="0.045"/>
+
+            <!-- 3. Long Straight Arm (~33cm) -->
+            <geom name="seg_long_arm" class="busbar_core" pos="-0.105 -0.045 0" euler="0 0 3" size="0.165 0.011 0.005" mass="0.180"/>
+
+            <!-- Foam Pads & Barcode Label on Long Arm -->
+            <geom name="pad_long_1" class="foam_pad" pos="-0.190 -0.049 0.001" euler="0 0 3" size="0.022 0.010 0.0055"/>
+            <geom name="pad_long_2" class="foam_pad" pos="-0.075 -0.043 0.001" euler="0 0 3" size="0.022 0.010 0.0055"/>
+            <geom name="label_a01" type="box" pos="0.015 -0.039 0.0052" euler="0 0 3" size="0.032 0.009 0.0005" material="label_white" mass="0.001" contype="0" conaffinity="0"/>
+
+            <!-- 4. Angled Middle Arm (~26cm, bends ~55 deg) -->
+            <geom name="seg_angled_arm" class="busbar_core" pos="0.132 0.062 0" euler="0 0 56" size="0.135 0.011 0.005" mass="0.135"/>
+
+            <!-- Foam Pads on Angled Arm -->
+            <geom name="pad_angle_1" class="foam_pad" pos="0.078 0.002 0.001" euler="0 0 56" size="0.022 0.010 0.0055"/>
+            <geom name="pad_angle_2" class="foam_pad" pos="0.175 0.115 0.001" euler="0 0 56" size="0.022 0.010 0.0055"/>
+
+            <!-- 5. Right Upper Bend / Hook -->
+            <geom name="seg_right_hook" class="busbar_core" pos="0.258 0.162 0" euler="0 0 -30" size="0.052 0.011 0.005" mass="0.032"/>
+
+            <!-- 6. Right Terminal Cap & Metal Contact (X: +0.34m) -->
+            <geom name="terminal_right_cap" type="box" pos="0.320 0.145 0" euler="0 0 -15" size="0.022 0.018 0.014" material="terminal_yellow" mass="0.020"/>
+            <geom name="terminal_right_tab" type="cylinder" pos="0.330 0.142 -0.008" size="0.012 0.002" material="metal_tab" mass="0.015"/>
+
+            <!-- Manipulation Grasp Sites (for RL / motion planning). group 3
+                 keeps the markers out of the robot's camera images. -->
+            <site name="grasp_center_corner" pos="0.055 -0.035 0" size="0.008" rgba="0 1 0 0.5" group="3"/>
+            <site name="grasp_long_arm" pos="-0.130 -0.046 0" size="0.008" rgba="0 1 0 0.5" group="3"/>
+            <site name="grasp_angled_arm" pos="0.125 0.055 0" size="0.008" rgba="0 1 0 0.5" group="3"/>
+        </body>
+    </worldbody>
+</mujoco>

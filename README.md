@@ -12,18 +12,23 @@ A directory of assets H12 assets for the correll lab
 
 ### Adding an object
 
-Write a standalone MJCF (it should open on its own in `view_mjcf.py`) holding
-only `<compiler>`, `<asset>` and `<worldbody>`, with one body and a
-`<freejoint>`. See `objects/orange_fuse_block.xml`.
+Write a standalone MJCF that opens on its own in `view_mjcf.py`, with one
+top-level body per part (give it a `<freejoint>` to make it loose). Examples:
+`objects/orange_fuse_block.xml`, `objects/hv_busbar_a01.xml`.
 
-- The body `pos` is its world spawn pose. The battery top is at z = 0.91 m.
-- Mesh and texture `file`s resolve against the file's own `meshdir` /
-  `texturedir` (e.g. `objects/assets/`).
-- Use `<compiler angle="radian"/>` if you use `euler` or `axisangle`.
-- Mass must come from a group-0 geom (no `group` attribute) or an explicit
-  `<inertial>`; the sim ignores mass on geoms in other groups.
-- Group-0 geoms are collision-only and aren't drawn by the viewer or the
-  cameras. Give the part a visual geom in group 2 with `contype="0"
-  conaffinity="0" density="0"`.
+- The body `pos` is its world spawn pose. Battery module tops are at
+  z = 0.932 m, the screw-row walls at 0.91 m and the channels between
+  modules at 0.822 m.
+- Only the top-level bodies and the assets they use are merged. A floor,
+  lights and `<option>` for viewing the file on its own can stay; the task
+  skips them.
+- Degree or radian angles and `<default>` classes both work. Mesh and texture
+  `file`s resolve against the file's own `meshdir` / `texturedir`.
+- Mass and inertia are taken from the file compiled on its own, so the part
+  weighs what it does in `view_mjcf.py`.
+- The sim's viewer and cameras draw geom groups 1-2 only; a geom with no
+  `group` is group 0 and invisible there. Put visible geoms in group 2 (they
+  still collide), as `hv_busbar_a01.xml` does through its default class.
 - Names (bodies, geoms, joints, materials, meshes) must be unique across the
   whole scene.
+- `objects/make_meshes.py` builds the fuse block's visual mesh.

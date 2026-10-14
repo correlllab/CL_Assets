@@ -2,7 +2,8 @@
      the battery pack, a row of 36 free-joint screws, room walls, floor and
      lights. No robot - h1_robocasa/battery_env.py wraps this arena around the
      robosuite H1_2, and every objects/*.xml is merged in beside it. Battery
-     top and screw-head seats are at z = 0.91 m; the robot spawns at the origin
+     module tops are at z = 0.932 m, the screw-row walls at 0.91 m and the
+     tray floor between modules at 0.822 m; the robot spawns at the origin
      facing +x toward the cell. -->
 <mujoco model="arpa_battery_cell">
   <!-- Moving bodies carry explicit inertials: robosuite compiles the merged
@@ -63,8 +64,6 @@
 
         <body name="battery_link" pos="0.067 -0.0235 -1.1419" euler="0 0 1.57">
           <geom name="battery" type="mesh" mesh="battery" material="battery_black" mass="400" contype="0" conaffinity="0" group="2" />
-
-          <geom name="battery_collision" type="box" size="0.6125 1.06 0.055" pos="0 0 0.055" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
         </body>
 
         <body name="linear_actuator_link" pos="0 0 -0.11375">
@@ -87,6 +86,23 @@
           </body>
         </body>
       </body>
+    </body>
+    <!-- Battery collision, in world coordinates, matching the battery mesh:
+         the tray floor (z 0.822), the two side walls carrying the screw rows
+         (top 0.91) and the 2 x 4 module blocks (top 0.932). The chamfered
+         end walls are not modelled. -->
+    <body name="battery_collision_link">
+      <geom name="battery_tray_floor" type="box" pos="1.0570 0.0120 0.8110" size="0.6130 1.0600 0.0110" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_wall_near" type="box" pos="0.4550 -0.0010 0.8550" size="0.0110 0.8880 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_wall_far" type="box" pos="1.6590 -0.0010 0.8550" size="0.0110 0.8880 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_00" type="box" pos="0.7595 -0.6325 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_01" type="box" pos="0.7595 -0.1975 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_02" type="box" pos="0.7595 0.2375 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_03" type="box" pos="0.7595 0.6725 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_10" type="box" pos="1.3535 -0.6325 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_11" type="box" pos="1.3535 -0.1975 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_12" type="box" pos="1.3535 0.2375 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
+      <geom name="battery_module_13" type="box" pos="1.3535 0.6725 0.8770" size="0.2635 0.1925 0.0550" group="3" friction="1 0.005 0.001" condim="4" priority="1" solref="0.004 1" solimp="0.95 0.99 0.001" />
     </body>
     <body name="screw_01" pos="1.658813 -0.863980 0.910000" euler="0.000000 0.000000 1.570000">
       <inertial pos="0 0 -0.000854438" quat="1 0 0 0" mass="0.008" diaginertia="3.03572e-07 3.03572e-07 1.61677e-07" />
