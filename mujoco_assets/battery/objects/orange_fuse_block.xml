@@ -1,0 +1,56 @@
+<!-- Orange fuse block. Spawns resting on the battery top (z = 0.91 m) on the
+     robot's right, just behind the near screw column (heads at x = 0.454,
+     radius 8 mm), as close to the robot as that column allows. pos is the
+     world spawn pose; mesh files resolve against meshdir, relative to this
+     file. -->
+<mujoco model="orange_fuse_block">
+    <compiler angle="radian" meshdir="assets" autolimits="true"/>
+
+    <asset>
+        <!-- fuse_block.stl is in mm -->
+        <mesh name="fuse_block_mesh" file="fuse_block.stl" scale="0.001 0.001 0.001"/>
+
+        <material name="orange_plastic" rgba="0.95 0.52 0.09 1.0" shininess="0.3" specular="0.2"/>
+        <material name="magenta_sticker" rgba="0.88 0.15 0.55 1.0"/>
+        <material name="metal_contacts" rgba="0.6 0.6 0.6 1.0" shininess="0.8" specular="0.8"/>
+    </asset>
+
+    <worldbody>
+        <!-- z = battery top 0.91 + box half-height 0.012 + 3 mm drop -->
+        <body name="orange_fuse_block" pos="0.52 -0.20 0.925">
+            <freejoint name="fuse_joint"/>
+
+            <!-- Box collision for contact stability; carries the full 0.047 kg -->
+            <geom name="fuse_collision_box"
+                  type="box"
+                  size="0.035 0.013 0.012"
+                  mass="0.047"
+                  material="orange_plastic"
+                  condim="4"
+                  friction="0.6 0.005 0.0001"
+                  solimp="0.9 0.95 0.001"
+                  solref="0.02 1"/>
+
+            <!-- Visual only: the 3D mesh -->
+            <geom name="fuse_visual_mesh"
+                  type="mesh"
+                  mesh="fuse_block_mesh"
+                  material="orange_plastic"
+                  group="2"
+                  density="0"
+                  contype="0"
+                  conaffinity="0"/>
+
+            <!-- Visual only: the magenta circle on top -->
+            <geom name="fuse_sticker_visual"
+                  type="cylinder"
+                  size="0.005 0.001"
+                  pos="0 0 0.012"
+                  material="magenta_sticker"
+                  group="2"
+                  density="0"
+                  contype="0"
+                  conaffinity="0"/>
+        </body>
+    </worldbody>
+</mujoco>
