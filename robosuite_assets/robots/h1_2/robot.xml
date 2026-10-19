@@ -112,7 +112,7 @@
           <camera name="head_cam" pos="0 0 0" xyaxes="0 -1 0 0 0 1" fovy="58" />
           <site name="head_cam_site" pos="0 0 0" size="0.01" rgba="0 1 0 1" />
         </body>
-        <body name="livox_link" pos="0.04874 0 0.67980" euler="0 0.24015730507441985 0">
+        <body name="livox_link" pos="0.04874 0 0.67980" euler="0 0.1642 0">
           <inertial pos="0 0 0" mass="1e-6" diaginertia="1e-9 1e-9 1e-9" />
           <site name="livox_site" pos="0 0 0" size="0.02" rgba="1 0 0 1" />
           <site name="livox_imu_site" pos="0 0 0" size="0.01" rgba="0 0 1 1" />
