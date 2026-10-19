@@ -220,11 +220,11 @@
           <camera name="head_cam" pos="0 0 0" xyaxes="0 -1 0 0 0 1" fovy="58"/>
           <site name="head_cam_site" pos="0 0 0" size="0.01" rgba="0 1 0 1"/>
         </body>
-        <!-- Livox lidar + co-located IMU mount.. -->
-        <body name="livox_link" pos="0.04874 0 0.67980" euler="0 0.1642 0">
+        <!-- MID-360 point frame (URDF livox_link) and its IMU chip (URDF livox_imu_link) -->
+        <body name="livox_link" pos="0.04874 0 0.67980" euler="0 0.1531 0">
           <inertial pos="0 0 0" mass="1e-6" diaginertia="1e-9 1e-9 1e-9"/>
           <site name="livox_site" pos="0 0 0" size="0.02" rgba="1 0 0 1"/>
-          <site name="livox_imu_site" pos="0 0 0" size="0.01" rgba="0 0 1 1"/>
+          <site name="livox_imu_site" pos="0.011 -0.02329 0.04412" quat="0.999982 -0.0008 0.00595 0.0000048" size="0.01" rgba="0 0 1 1"/>
         </body>
 
         <body name="left_shoulder_pitch_link" pos="0 0.14806 0.42333" quat="0.991445 0.130526 0 0">

@@ -843,10 +843,19 @@
     <child link="head_camera_link"/>
   </joint>
   <link name="livox_link"></link>
+  <!-- MID-360 point frame: upright (MID360_config.json roll 180), pitch measured on the real robot -->
   <joint name="livox_joint" type="fixed">
-    <origin xyz="0.04874 0 0.67980" rpy="0 0.1642 0"/>
+    <origin xyz="0.04874 0 0.67980" rpy="0 0.1531 0"/>
     <parent link="torso_link"/>
     <child link="livox_link"/>
+  </joint>
+  <!-- MID-360 IMU chip, the frame of /livox/imu (livox_imu_upright): Livox's offset in the
+       point frame, rotation measured on the real robot (floor plane vs accelerometer) -->
+  <link name="livox_imu_link"></link>
+  <joint name="livox_imu_joint" type="fixed">
+    <origin xyz="0.011 -0.02329 0.04412" rpy="-0.0016 0.0119 0"/>
+    <parent link="livox_link"/>
+    <child link="livox_imu_link"/>
   </joint>
 
   <!-- Magpie e-flesh gripper, right wrist -->
