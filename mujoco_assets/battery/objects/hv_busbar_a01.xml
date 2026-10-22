@@ -1,7 +1,9 @@
 <!-- HV bus bar A01 (~0.70 m end to end, 0.470 kg). Spawns on the robot's left
-     across two battery module tops (z = 0.932 m), resting on its terminal caps
-     (lowest point 14 mm below the body origin). pos is the world spawn pose. The
-     floor, light and <option> are for viewing this file on its own; the
+     with its long straight arm pointing forward, centred within left-arm reach
+     (world ~(0.58, 0.20)) so a top-down grasp's fingers straddle it; the bend
+     and far terminal rest on module 02 (top z = 0.932 m) and the near terminal
+     overhangs the module's near edge (x = 0.496). pos is the world spawn pose.
+     The floor, light and <option> are for viewing this file on its own; the
      battery task merges only the body. -->
 <mujoco model="hv_busbar_a01">
     <compiler angle="degree" inertiafromgeom="true"/>
@@ -37,7 +39,7 @@
 
         <!-- ==================== HV BUSBAR BODY ==================== -->
         <!-- Total End-to-End Span: ~0.70m | Total Mass: 0.470 kg (470g) -->
-        <body name="hv_busbar" pos="0.88 0.40 0.949">
+        <body name="hv_busbar" pos="0.685 0.245 0.949">
             <freejoint name="busbar_freejoint"/>
 
             <!-- 1. Left Terminal Cap & Metal Contact (X: -0.35m) -->
