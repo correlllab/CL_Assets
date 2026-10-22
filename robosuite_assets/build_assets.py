@@ -139,6 +139,10 @@ src_tree = ET.parse(SRC)
 src_root = src_tree.getroot()
 flat = build_flat_defaults(src_root.find("default"))
 H12_JOINT_DYN = flat["h1_2"]["joint"]          # damping/armature/frictionloss
+# Gripper linkage joints take the "magpie" class dynamics. The h1_2 leg values
+# (damping 10, frictionloss 0.2 on each of the 3 hinges per finger) stall a
+# finger below ~1.5 N*m of crank torque, i.e. above the real MAGPIE's 32 N grip.
+MAGPIE_JOINT_DYN = flat["magpie"]["joint"]
 
 
 def rewrite_mesh_files(asset_elem, prefix):
@@ -279,13 +283,13 @@ def build_gripper(model_name, frag_path, strip_prefix=None):
                 if v and v.startswith(strip_prefix):
                     el.set(attr, v[len(strip_prefix):])
 
-    # inline geom classes; set joint dynamics (preserve currently-inherited h1_2
-    # joint values); rename actuated joints to finger_joint1/2
+    # inline geom classes; set the magpie joint dynamics; rename actuated
+    # joints to finger_joint1/2
     for geom in mount.iter("geom"):
         if "class" in geom.attrib:
             inline_class(geom, flat)
     for joint in mount.iter("joint"):
-        apply_joint_dynamics(joint, H12_JOINT_DYN)
+        apply_joint_dynamics(joint, MAGPIE_JOINT_DYN)
         nm = joint.get("name")
         if nm in FINGER_JOINT_RENAME:
             joint.set("name", FINGER_JOINT_RENAME[nm])
@@ -329,6 +333,19 @@ def build_gripper(model_name, frag_path, strip_prefix=None):
     for con in src_root.find("equality").findall("connect"):
         if con.get("name") in ("left_4bar_close", "right_4bar_close"):
             equality.append(copy.deepcopy(con))
+
+    # contact excludes: the gripper's own links never collide with each other
+    # except finger against finger. The crank collision meshes overlap base_bot
+    # at rest; left in, that contact clamps the cranks with friction that only an
+    # unbounded actuator torque can drag through, so a force-limited close
+    # stalls mid-stroke.
+    links = [b.get("name") for b in mount.iter("body")]
+    fingers = {"left_finger_combined", "right_finger_combined"}
+    contact = ET.SubElement(mj, "contact")
+    for i, b1 in enumerate(links):
+        for b2 in links[i + 1:]:
+            if {b1, b2} != fingers:
+                ET.SubElement(contact, "exclude", {"body1": b1, "body2": b2})
 
     # actuator: the two finger position actuators (renamed joints)
     actuator = ET.SubElement(mj, "actuator")
