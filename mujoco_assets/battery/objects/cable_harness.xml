@@ -1,0 +1,223 @@
+<!-- EV voltage-sense cable harness (0.130 kg, ~0.90 m end to end): a thick
+     foam-wrapped orange trunk from a black 16-pin root connector, with thin
+     orange sense wires and black braided branches ending in connectors and
+     sensor boxes. Spawns on the near-right battery module (module 00, top
+     z = 0.932 m, x 0.496..1.023, y -0.824..-0.440): the root connector at the
+     module's far end, the trunk running back toward the robot to the
+     module's near edge, and the branches draping off the module's outer (-y)
+     edge. pos is the world spawn pose
+     (z = module top + 13 mm trunk-sleeve radius + 2 mm drop). The <option>,
+     light, table and floor are for viewing this file on its own; the battery
+     task merges only the body (the merged scene runs robosuite's <option>). -->
+<mujoco model="ev_volt_sens_harness">
+    <compiler angle="degree" coordinate="local" inertiafromgeom="true"/>
+    <!-- Implicitfast integrator handles stiff cable joint damping without instability -->
+    <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" solver="Newton" iterations="50"/>
+
+    <default>
+        <!-- group 2: the sim's viewer and cameras draw groups 1-2 only. The
+             geoms still collide; group only sets visibility. -->
+        <geom condim="4" friction="0.8 0.005 0.0001" solref="0.008 1" solimp="0.95 0.99 0.001" group="2"/>
+        
+        <!-- 1. Thick Main Trunk (Stiffer bending, heavier foam/tape wrap) -->
+        <default class="trunk_seg">
+            <joint type="ball" stiffness="0.35" damping="0.015" armature="0.0002" limited="true" range="0 35"/>
+            <geom type="capsule" size="0.006" material="tape_orange" density="587.5"/>
+        </default>
+        <default class="foam_sleeve">
+            <geom type="cylinder" size="0.011 0.028" euler="0 90 0" material="foam_orange" density="125.9" friction="1.1 0.01 0.0005"/>
+        </default>
+
+        <!-- 2. Thin Orange Sense Branches (Highly flexible, low bending stiffness) -->
+        <default class="thin_orange_wire">
+            <joint type="ball" stiffness="0.025" damping="0.002" armature="0.00005" limited="true" range="0 50"/>
+            <geom type="capsule" size="0.0028" material="wire_orange" density="503.6"/>
+        </default>
+
+        <!-- 3. Black Braided Sleeved Branches (Medium-low stiffness) -->
+        <default class="black_sleeved_wire">
+            <joint type="ball" stiffness="0.045" damping="0.003" armature="0.00005" limited="true" range="0 45"/>
+            <geom type="capsule" size="0.004" material="sleeve_black" density="545.5"/>
+        </default>
+    </default>
+
+    <asset>
+        <material name="tape_orange" rgba="0.92 0.35 0.05 1.0" shininess="0.4"/>
+        <material name="foam_orange" rgba="0.96 0.45 0.12 1.0" shininess="0.05"/>
+        <material name="wire_orange" rgba="0.98 0.42 0.06 1.0" shininess="0.5"/>
+        <material name="sleeve_black" rgba="0.12 0.12 0.12 1.0" shininess="0.1"/>
+        <material name="conn_black" rgba="0.15 0.15 0.16 1.0" shininess="0.3"/>
+        <material name="conn_white" rgba="0.92 0.92 0.92 1.0" shininess="0.3"/>
+        <material name="tab_yellow" rgba="0.95 0.82 0.05 1.0" shininess="0.4"/>
+        <texture name="grid" type="2d" builtin="checker" rgb1=".22 .22 .22" rgb2=".32 .32 .32" width="300" height="300"/>
+        <material name="floor_mat" texture="grid" texrepeat="8 8" reflectance="0.05"/>
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 1.8" dir="0 0 -1" diffuse="0.85 0.85 0.85"/>
+        <!-- Elevated workbench surface so overhanging cables can drape off the edge (-Y / -X) -->
+        <geom name="table_top" type="box" pos="0 0.05 -0.025" size="0.48 0.40 0.025" rgba="0.82 0.68 0.50 1" friction="0.7 0.005 0.0001"/>
+        <geom name="floor" type="plane" pos="0 0 -0.75" size="1.5 1.5 0.01" material="floor_mat"/>
+
+        <!-- ==================== ROOT: MAIN BLACK MULTIPIN CONNECTOR (Right End) ==================== -->
+        <body name="harness_root_conn" pos="0.990 -0.520 0.947" euler="0 0 165">
+            <freejoint name="harness_root"/>
+            <!-- Main 16-pin black connector housing -->
+            <geom name="main_black_plug" type="box" pos="0 0 0" size="0.022 0.018 0.010" material="conn_black" mass="0.007553"/>
+            <!-- Exposed red/white/blue wire bundle entering connector -->
+            <geom name="wire_fanout" type="cylinder" pos="0.028 0 0" euler="0 90 0" size="0.009 0.012" rgba="0.7 0.2 0.3 1" mass="0.002098"/>
+
+            <!-- ==================== MAIN TRUNK SEGMENT 1 (Thick Foam Wrap) ==================== -->
+            <body name="trunk_1" pos="0.040 0 0" euler="0 0 15">
+                <joint name="j_trunk_1" class="trunk_seg"/>
+                <geom fromto="0 0 0 0.075 0 0" class="trunk_seg"/>
+                <geom pos="0.038 0 0" class="foam_sleeve" size="0.013 0.035"/>
+
+                <!-- Short breakout: White 2-pin connector near main plug -->
+                <body name="branch_white_plug" pos="0.025 -0.008 0" euler="0 0 -75">
+                    <joint name="j_w_plug" class="black_sleeved_wire"/>
+                    <geom fromto="0 0 0 0.045 0 0" class="black_sleeved_wire" size="0.003"/>
+                    <geom name="white_conn" type="box" pos="0.055 0 0" size="0.012 0.008 0.006" material="conn_white" mass="0.001679"/>
+                </body>
+
+                <!-- ==================== MAIN TRUNK SEGMENT 2 ==================== -->
+                <body name="trunk_2" pos="0.075 0 0" euler="0 0 10">
+                    <joint name="j_trunk_2" class="trunk_seg"/>
+                    <geom fromto="0 0 0 0.075 0 0" class="trunk_seg"/>
+                    <!-- Yellow clip 1 -->
+                    <geom name="clip_y1" type="box" pos="0.025 0.016 0" size="0.005 0.006 0.004" material="tab_yellow" mass="0.0004196"/>
+
+                    <!-- ==================== BRANCH A: LONG ORANGE WIRE 1 (64cm, 8 links) ==================== -->
+                    <body name="b_orange1_1" pos="0.065 0.005 0" euler="0 0 70">
+                        <joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                        <body name="b_orange1_2" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                            <body name="b_orange1_3" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                <body name="b_orange1_4" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                    <body name="b_orange1_5" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                        <body name="b_orange1_6" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                            <body name="b_orange1_7" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                <body name="b_orange1_8" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                    <geom name="tip_white_1" type="box" pos="0.085 0 0" size="0.005 0.004 0.003" material="conn_white" mass="0.0008393"/>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+
+                    <!-- ==================== MAIN TRUNK SEGMENT 3 ==================== -->
+                    <body name="trunk_3" pos="0.075 0 0">
+                        <joint name="j_trunk_3" class="trunk_seg"/>
+                        <geom fromto="0 0 0 0.075 0 0" class="trunk_seg"/>
+                        <geom pos="0.045 0 0" class="foam_sleeve"/>
+
+                        <!-- ==================== BRANCH B: SHORT BLACK SLEEVED SENSOR ("2E27", 28cm) ==================== -->
+                        <body name="b_black1_1" pos="0.025 0.005 0" euler="0 0 65">
+                            <joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.07 0 0" class="black_sleeved_wire"/>
+                            <body name="b_black1_2" pos="0.07 0 0"><joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.07 0 0" class="black_sleeved_wire" size="0.0055"/>
+                                <body name="b_black1_3" pos="0.07 0 0"><joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.07 0 0" class="black_sleeved_wire" size="0.0055"/>
+                                    <body name="b_black1_4" pos="0.07 0 0"><joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.07 0 0" class="black_sleeved_wire"/>
+                                        <!-- Black flat sensor box "2E27" -->
+                                        <geom name="sensor_2e27" type="box" pos="0.082 0 0" size="0.012 0.015 0.005" material="conn_black" mass="0.002518"/>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+
+                        <!-- ==================== MAIN TRUNK SEGMENT 4 ==================== -->
+                        <body name="trunk_4" pos="0.075 0 0">
+                            <joint name="j_trunk_4" class="trunk_seg"/>
+                            <geom fromto="0 0 0 0.080 0 0" class="trunk_seg"/>
+                            <geom name="clip_y2" type="box" pos="0.015 0.014 0" size="0.005 0.006 0.004" material="tab_yellow" mass="0.0004196"/>
+
+                            <!-- ==================== BRANCH C: MIDDLE ORANGE WIRE 2 (64cm, 8 links) ==================== -->
+                            <body name="b_orange2_1" pos="0.055 0.005 0" euler="0 0 55">
+                                <joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                <body name="b_orange2_2" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                    <body name="b_orange2_3" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                        <body name="b_orange2_4" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                            <body name="b_orange2_5" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                <body name="b_orange2_6" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                    <body name="b_orange2_7" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                        <body name="b_orange2_8" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                            <geom name="tip_white_2" type="box" pos="0.085 0 0" size="0.005 0.004 0.003" material="conn_white" mass="0.0008393"/>
+                                                        </body>
+                                                    </body>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+
+                            <!-- ==================== MAIN TRUNK SEGMENT 5 ==================== -->
+                            <body name="trunk_5" pos="0.080 0 0">
+                                <joint name="j_trunk_5" class="trunk_seg"/>
+                                <geom fromto="0 0 0 0.080 0 0" class="trunk_seg"/>
+                                <geom pos="0.035 0 0" class="foam_sleeve"/>
+                                <geom name="clip_y3" type="box" pos="0.065 0.014 0" size="0.005 0.006 0.004" material="tab_yellow" mass="0.0004196"/>
+
+                                <!-- ==================== MAIN TRUNK SEGMENT 6 (Distal Fork) ==================== -->
+                                <body name="trunk_6" pos="0.080 0 0" euler="0 0 10">
+                                    <joint name="j_trunk_6" class="trunk_seg"/>
+                                    <geom fromto="0 0 0 0.080 0 0" class="trunk_seg"/>
+                                    <geom pos="0.045 0 0" class="foam_sleeve"/>
+                                    <geom name="clip_y4" type="box" pos="0.070 0.014 0" size="0.005 0.006 0.004" material="tab_yellow" mass="0.0004196"/>
+
+                                    <!-- ==================== BRANCH D: DISTAL ORANGE WIRE 3 (With White Label Tag) ==================== -->
+                                    <body name="b_orange3_1" pos="0.075 0.005 0" euler="0 0 40">
+                                        <joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                        <body name="b_orange3_2" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                            <body name="b_orange3_3" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                <body name="b_orange3_4" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                    <body name="b_orange3_5" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                        <body name="b_orange3_6" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                            <!-- White identification flag label near tip -->
+                                                            <geom name="id_flag_label" type="box" pos="0.045 0.015 0" size="0.018 0.012 0.0005" material="conn_white" mass="0.0004196"/>
+                                                            <geom name="tip_white_3" type="box" pos="0.085 0 0" size="0.005 0.004 0.003" material="conn_white" mass="0.0008393"/>
+                                                        </body>
+                                                    </body>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+
+                                    <!-- ==================== BRANCH E: DISTAL ORANGE WIRE 4 (End Continuation) ==================== -->
+                                    <body name="b_orange4_1" pos="0.080 0 0" euler="0 0 15">
+                                        <joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                        <body name="b_orange4_2" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                            <body name="b_orange4_3" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                <body name="b_orange4_4" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                    <body name="b_orange4_5" pos="0.08 0 0"><joint class="thin_orange_wire"/><geom fromto="0 0 0 0.08 0 0" class="thin_orange_wire"/>
+                                                        <geom name="tip_white_4" type="box" pos="0.085 0 0" size="0.005 0.004 0.003" material="conn_white" mass="0.0008393"/>
+                                                    </body>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+
+                                    <!-- ==================== BRANCH F: DISTAL BLACK BRAIDED SLEEVE BRANCH ==================== -->
+                                    <body name="b_black2_1" pos="0.080 -0.005 0" euler="0 0 65">
+                                        <joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.08 0 0" class="black_sleeved_wire" size="0.0055"/>
+                                        <body name="b_black2_2" pos="0.08 0 0"><joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.08 0 0" class="black_sleeved_wire" size="0.0055"/>
+                                            <body name="b_black2_3" pos="0.08 0 0"><joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.08 0 0" class="black_sleeved_wire" size="0.0055"/>
+                                                <body name="b_black2_4" pos="0.08 0 0"><joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.08 0 0" class="black_sleeved_wire" size="0.0055"/>
+                                                    <body name="b_black2_5" pos="0.08 0 0"><joint class="black_sleeved_wire"/><geom fromto="0 0 0 0.08 0 0" class="black_sleeved_wire"/>
+                                                        <geom name="sensor_distal_black" type="box" pos="0.090 0 0" size="0.012 0.014 0.005" material="conn_black" mass="0.002518"/>
+                                                    </body>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+</mujoco>
