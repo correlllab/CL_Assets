@@ -636,7 +636,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.09977840632200241" />
+        <sphere radius="0.078" />
       </geometry>
       <material name="color_torso_link_sphere1">
         <color rgba="0.526400 0.733177 0.733600 1.000000" />
@@ -645,7 +645,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.09977840632200241" />
+        <sphere radius="0.078" />
       </geometry>
       <drake:proximity_properties>
         <drake:rigid_hydroelastic />
@@ -663,7 +663,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.08875837922096252" />
+        <sphere radius="0.086" />
       </geometry>
       <material name="color_torso_link_sphere2">
         <color rgba="0.526400 0.733177 0.733600 1.000000" />
@@ -672,7 +672,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.08875837922096252" />
+        <sphere radius="0.086" />
       </geometry>
       <drake:proximity_properties>
         <drake:rigid_hydroelastic />
@@ -690,7 +690,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.08943500369787216" />
+        <sphere radius="0.102" />
       </geometry>
       <material name="color_torso_link_sphere3">
         <color rgba="0.526400 0.733177 0.733600 1.000000" />
@@ -699,7 +699,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.08943500369787216" />
+        <sphere radius="0.102" />
       </geometry>
       <drake:proximity_properties>
         <drake:rigid_hydroelastic />
@@ -1187,20 +1187,25 @@
     <child link="right_hip_pitch_link_sphere1" />
     <origin xyz="-0.0005210214876569808 -0.04626546800136566 -0.02489141933619976" rpy="0 0 0" />
   </joint>
+  <!-- The torso spheres are a column on the torso's midplane, placed by hand against
+       g1_description's torso mesh. From the waist to the chest (torso z 0.04-0.16 m) their
+       sides stay 6-19 mm inside the torso's flanks, where the hanging upper arms are 9 mm
+       from the real torso at home, so the shoulder-yaw spheres clear them by 25 mm there
+       (CL_Assets/README.md). -->
   <joint name="torso_link_to_torso_link_sphere1" type="fixed">
     <parent link="torso_link" />
     <child link="torso_link_sphere1" />
-    <origin xyz="0.005159590858966112 -0.001993038458749652 0.08828842639923096" rpy="0 0 0" />
+    <origin xyz="0 0 0.061" rpy="0 0 0" />
   </joint>
   <joint name="torso_link_to_torso_link_sphere2" type="fixed">
     <parent link="torso_link" />
     <child link="torso_link_sphere2" />
-    <origin xyz="0.0039655775763094425 -0.03270402550697327 0.21518424153327942" rpy="0 0 0" />
+    <origin xyz="0 0 0.116" rpy="0 0 0" />
   </joint>
   <joint name="torso_link_to_torso_link_sphere3" type="fixed">
     <parent link="torso_link" />
     <child link="torso_link_sphere3" />
-    <origin xyz="0.005717250518500805 0.029324715957045555 0.218731090426445" rpy="0 0 0" />
+    <origin xyz="0.002 0 0.212" rpy="0 0 0" />
   </joint>
   <joint name="head_link_to_head_link_sphere1" type="fixed">
     <parent link="head_link" />

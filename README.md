@@ -58,13 +58,31 @@ meshes are Git-LFS objects (`*.STL`).
 `g1/g1_sphere.urdf` and `g1/g1_sphere_collision.srdf` are the G1's
 self-collision model, supplied by the lab and not generated in this repo (there
 is no `exclude_pair` script for them). They sit beside `g1_description/`
-because they are the lab's files, not Unitree's.
+because they are the lab's files, not Unitree's. The SRDF is the lab's file as
+supplied; the sphere model is the lab's except for its three torso spheres.
 
 - `g1_sphere.urdf` packs 24 spheres (each as both collision and visual
   geometry, no meshes) onto the body-only G1, with its joints in `/lowcmd`
   slot order. It was packed on the rubber-hand G1: each hand is two spheres on a
   `{left,right}_rubber_hand` link at the Dex3 palm's mount, so the Dex3 fingers
   are not covered.
+- The torso spheres are a column on the torso's midplane, placed by hand
+  against `g1_description`'s torso mesh: at torso-link z 0.061, 0.116 and
+  0.212 m, radii 0.078, 0.086 and 0.102 m. With the arms hanging at
+  `golem_upper_ik`'s `home`, each upper arm is 9 mm from the real torso's
+  flank. The lab's torso spheres (one around the lower torso, r 0.100 m, and
+  two side by side around the chest, r 0.089 m) followed the flanks, so the
+  shoulder-yaw spheres sat 2 mm from them there and the IK's keep-out
+  (`controller.d_min`) could be no more than 2 mm. The column's sides stay 6 to
+  19 mm inside the flanks from the waist to the chest (torso z 0.04 to 0.16 m),
+  so at `home` every arm sphere clears the torso by 25 mm and the G1 keeps the
+  H1-2's 20 mm keep-out: an upper arm rolled inward from `home` stops a few
+  millimetres from the real torso. Elsewhere the column follows the torso about
+  as closely as the lab's spheres: the torso mesh lies at most 25 mm outside
+  it (the lab's spheres: 22 mm), more than 20 mm only on those flanks, and the
+  column stands up to 22 mm proud of the chest's front.
 - `g1_sphere_collision.srdf` lists the collision pairs to skip. Unlike the
   H1-2's, it keeps the pelvis and hip-pitch spheres active against the torso,
-  the arms and the hands.
+  the arms and the hands. With the arms straight down (`golem_upper_ik`'s
+  `arms_down`) the real wrists and hands rest on the hips, so that pose is in
+  collision on the meshes as in the spheres.
