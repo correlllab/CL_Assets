@@ -7,8 +7,8 @@ articulated gripper, and are consumed by Pinocchio / the IK controller. The
 ``*_ros.urdf`` twins are a *pure function* of the base and are consumed by
 ``robot_state_publisher`` / RViz. They differ only by:
 
-  1. mesh paths rewritten to ``package://h12_ros2_model/...`` URIs (so RViz /
-     ``robot_state_publisher`` resolve meshes through the ROS package), and
+  1. mesh paths rewritten to ``package://`` URIs under ``PKG_BASE`` (so RViz /
+     ``robot_state_publisher`` resolve meshes through a ROS package), and
   2. the 12 magpie finger hinge joints rigidified to ``type="fixed"``. Those
      joints have no ``/joint_states`` source (``NUM_HAND_DOF = 0``), so as
      ``revolute``/``continuous`` joints ``robot_state_publisher`` never emits
@@ -21,10 +21,15 @@ Run it in place after editing any base URDF::
     cd CL_Assets/ros_assets && python3 gen_ros_urdf.py            # regenerate
     cd CL_Assets/ros_assets && python3 gen_ros_urdf.py --check    # CI / dry-run
 
-``core_ws/src/h12_ros2_model/setup.py`` imports the transform from this module
-and fails the colcon build if a committed ``*_ros.urdf`` is stale, so the twins
-can never silently drift. Importing this module has no side effects (the CLI is
-guarded by ``__main__``); stdlib only, so it is safe to import during the build.
+GOLEM's ``core_ws/src/golem_ros2_models/setup.py`` does not read the committed
+twins: it builds its own ROS copy of ``h1_2_magpie.urdf`` at build time, with
+mesh URIs into its own share directory, and imports ``rigidify_gripper`` and
+``assert_well_formed`` from this module for it. The twins' ``PKG_BASE`` names
+``h12_ros2_model``, a package GOLEM no longer has, so RViz cannot resolve their
+meshes through it; their joints and frames are still read directly (GOLEM's
+``h12_slam`` tests read ``h1_2_magpie_ros.urdf``). Importing this module has no
+side effects (the CLI is guarded by ``__main__``); stdlib only, so it is safe to
+import during a build.
 """
 
 import argparse
@@ -39,9 +44,9 @@ PAIRS = [
     ("h1_2_handless.urdf", "h1_2_handless_ros.urdf"),
 ]
 
-# package:// prefix for the installed h12_ros2_model share layout, where h1_2
-# body meshes sit directly under assets/h1_2/meshes/ and gripper meshes under
-# assets/h1_2/meshes/magpie/ (see h12_ros2_model/setup.py data_files).
+# package:// prefix of the twins' meshes: the share layout of h12_ros2_model, a
+# package GOLEM no longer has, with the h1_2 body meshes directly under
+# assets/h1_2/meshes/ and the gripper meshes under assets/h1_2/meshes/magpie/.
 PKG_BASE = "package://h12_ros2_model/assets/h1_2/"
 
 # The 12 magpie finger hinge joints: articulated in the base, rigidified (fixed)
@@ -72,9 +77,10 @@ def rewrite_mesh_package(text):
 def rewrite_mesh_share_relative(text):
     """Rewrite base relative mesh paths to the share-layout relative form.
 
-    This is the rewrite h12_ros2_model/setup.py applies when staging the
-    Pinocchio-flavor (non-_ros) URDFs; kept here so the mesh-dir rules live in a
-    single place.
+    The layout of a share directory with the h1_2 meshes in meshes/ and the
+    gripper meshes in meshes/magpie/ beside the URDF. GOLEM's
+    golem_ros2_models/setup.py installs its Pinocchio (non-_ros) URDFs in that
+    layout with its own copy of this mapping.
     """
     text = text.replace("../meshes/h1_2/", "meshes/")
     text = text.replace("../meshes/magpie/", "meshes/magpie/")

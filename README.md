@@ -66,9 +66,13 @@ supplied; the sphere model is the lab's except for its three torso spheres.
   slot order. It was packed on the rubber-hand G1: each hand is two spheres on a
   `{left,right}_rubber_hand` link at the Dex3 palm's mount, so the Dex3 fingers
   are not covered.
-- The torso spheres are a column on the torso's midplane, placed by hand
-  against `g1_description`'s torso mesh: at torso-link z 0.061, 0.116 and
-  0.212 m, radii 0.078, 0.086 and 0.102 m. With the arms hanging at
+- The torso spheres are a column on the torso's midplane, fitted by an
+  optimiser (differential evolution) against points sampled on
+  `g1_description`'s torso mesh, then rounded to millimetres: at torso-link z
+  0.061, 0.116 and 0.212 m, radii 0.078, 0.086 and 0.102 m. The fit minimised
+  the mesh left uncovered, then the spheres' protrusion past the mesh, subject
+  to every arm sphere clearing them by at least 25 mm at `golem_upper_ik`'s
+  `home`, `t_pose` and `arms_front_45`. With the arms hanging at
   `golem_upper_ik`'s `home`, each upper arm is 9 mm from the real torso's
   flank. The lab's torso spheres (one around the lower torso, r 0.100 m, and
   two side by side around the chest, r 0.089 m) followed the flanks, so the
@@ -86,3 +90,6 @@ supplied; the sphere model is the lab's except for its three torso spheres.
   the arms and the hands. With the arms straight down (`golem_upper_ik`'s
   `arms_down`) the real wrists and hands rest on the hips, so that pose is in
   collision on the meshes as in the spheres.
+- The lab's original sphere model is `g1/g1_sphere.urdf` at commit `f183096`
+  (sha256 `981f84fc823d8a9fd0aebcf126379935f7748125e2e8289758af6e5e6318cb57`):
+  `git show f183096:g1/g1_sphere.urdf`.

@@ -1187,11 +1187,12 @@
     <child link="right_hip_pitch_link_sphere1" />
     <origin xyz="-0.0005210214876569808 -0.04626546800136566 -0.02489141933619976" rpy="0 0 0" />
   </joint>
-  <!-- The torso spheres are a column on the torso's midplane, placed by hand against
-       g1_description's torso mesh. From the waist to the chest (torso z 0.04-0.16 m) their
-       sides stay 6-19 mm inside the torso's flanks, where the hanging upper arms are 9 mm
-       from the real torso at home, so the shoulder-yaw spheres clear them by 25 mm there
-       (CL_Assets/README.md). -->
+  <!-- The torso spheres are a column on the torso's midplane, fitted by an optimiser against
+       points on g1_description's torso mesh and rounded to millimetres. From the waist to
+       the chest (torso z 0.04-0.16 m) their sides stay 6-19 mm inside the torso's flanks,
+       where the hanging upper arms are 9 mm from the real torso at home, so the shoulder-yaw
+       spheres clear them by 25 mm there. The lab's original torso spheres are in this file
+       at CL_Assets commit f183096 (CL_Assets/README.md has its sha256). -->
   <joint name="torso_link_to_torso_link_sphere1" type="fixed">
     <parent link="torso_link" />
     <child link="torso_link_sphere1" />
