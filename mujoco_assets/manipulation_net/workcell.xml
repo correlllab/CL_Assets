@@ -1,0 +1,4 @@
+<mujoco model="Magpie workcell additions">
+  <compiler angle="radian"/>
+  <worldbody/>
+</mujoco>

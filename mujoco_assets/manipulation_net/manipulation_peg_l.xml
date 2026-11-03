@@ -1,0 +1,90 @@
+<mujoco model="atb_m1_peg_l">
+  <compiler angle="radian" />
+  <asset>
+    <mesh name="visual_mesh" file="meshes/manipulation_net/atb_m1_l-shaped_peg.stl" scale="0.01 0.01 0.01" />
+    <mesh name="collision_0" file="meshes/manipulation_net/collision/peg_l_0.obj" />
+    <mesh name="collision_1" file="meshes/manipulation_net/collision/peg_l_1.obj" />
+    <mesh name="collision_2" file="meshes/manipulation_net/collision/peg_l_2.obj" />
+    <mesh name="collision_3" file="meshes/manipulation_net/collision/peg_l_3.obj" />
+    <mesh name="collision_4" file="meshes/manipulation_net/collision/peg_l_4.obj" />
+    <mesh name="collision_5" file="meshes/manipulation_net/collision/peg_l_5.obj" />
+    <mesh name="collision_6" file="meshes/manipulation_net/collision/peg_l_6.obj" />
+    <mesh name="collision_7" file="meshes/manipulation_net/collision/peg_l_7.obj" />
+    <mesh name="collision_8" file="meshes/manipulation_net/collision/peg_l_8.obj" />
+    <mesh name="collision_9" file="meshes/manipulation_net/collision/peg_l_9.obj" />
+    <mesh name="collision_10" file="meshes/manipulation_net/collision/peg_l_10.obj" />
+    <mesh name="collision_11" file="meshes/manipulation_net/collision/peg_l_11.obj" />
+    <mesh name="collision_12" file="meshes/manipulation_net/collision/peg_l_12.obj" />
+    <mesh name="collision_13" file="meshes/manipulation_net/collision/peg_l_13.obj" />
+    <mesh name="collision_14" file="meshes/manipulation_net/collision/peg_l_14.obj" />
+    <mesh name="collision_15" file="meshes/manipulation_net/collision/peg_l_15.obj" />
+    <mesh name="collision_16" file="meshes/manipulation_net/collision/peg_l_16.obj" />
+    <mesh name="collision_17" file="meshes/manipulation_net/collision/peg_l_17.obj" />
+    <mesh name="collision_18" file="meshes/manipulation_net/collision/peg_l_18.obj" />
+    <mesh name="collision_19" file="meshes/manipulation_net/collision/peg_l_19.obj" />
+    <mesh name="collision_20" file="meshes/manipulation_net/collision/peg_l_20.obj" />
+    <mesh name="collision_21" file="meshes/manipulation_net/collision/peg_l_21.obj" />
+    <mesh name="collision_22" file="meshes/manipulation_net/collision/peg_l_22.obj" />
+    <mesh name="collision_23" file="meshes/manipulation_net/collision/peg_l_23.obj" />
+    <mesh name="collision_24" file="meshes/manipulation_net/collision/peg_l_24.obj" />
+    <mesh name="collision_25" file="meshes/manipulation_net/collision/peg_l_25.obj" />
+    <mesh name="collision_26" file="meshes/manipulation_net/collision/peg_l_26.obj" />
+    <mesh name="collision_27" file="meshes/manipulation_net/collision/peg_l_27.obj" />
+    <mesh name="collision_28" file="meshes/manipulation_net/collision/peg_l_28.obj" />
+    <mesh name="collision_29" file="meshes/manipulation_net/collision/peg_l_29.obj" />
+    <mesh name="collision_30" file="meshes/manipulation_net/collision/peg_l_30.obj" />
+    <mesh name="collision_31" file="meshes/manipulation_net/collision/peg_l_31.obj" />
+    <mesh name="collision_32" file="meshes/manipulation_net/collision/peg_l_32.obj" />
+    <mesh name="collision_33" file="meshes/manipulation_net/collision/peg_l_33.obj" />
+    <mesh name="collision_34" file="meshes/manipulation_net/collision/peg_l_34.obj" />
+    <mesh name="collision_35" file="meshes/manipulation_net/collision/peg_l_35.obj" />
+    <mesh name="collision_36" file="meshes/manipulation_net/collision/peg_l_36.obj" />
+    <mesh name="collision_37" file="meshes/manipulation_net/collision/peg_l_37.obj" />
+  </asset>
+  <worldbody>
+    <body name="peg">
+      <freejoint name="freejoint" />
+      <inertial pos="0 0 0.025" mass="0.0148884356075" fullinertia="3.92206116185e-06 3.30767890946e-06 1.02622523485e-06 1.5796566891e-07 0 0" />
+      <geom name="visual" type="mesh" mesh="visual_mesh" pos="-0.0154033898158 0.00188071945938 0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.85 0.48 0.16 1" />
+      <geom name="collision_0" type="mesh" mesh="collision_0" pos="0.00143122018421 -0.00577683054062 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_1" type="mesh" mesh="collision_1" pos="0.00146880518421 -0.00146817554062 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_2" type="mesh" mesh="collision_2" pos="-0.00253071981579 0.00722316945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_3" type="mesh" mesh="collision_3" pos="0.000469280184207 0.00722269445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_4" type="mesh" mesh="collision_4" pos="0.000491090184207 0.00722126445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_5" type="mesh" mesh="collision_5" pos="0.000512860184207 0.00721888945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_6" type="mesh" mesh="collision_6" pos="0.000534545184207 0.00721556945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_7" type="mesh" mesh="collision_7" pos="0.000556105184207 0.00721131445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_8" type="mesh" mesh="collision_8" pos="0.000577500184207 0.00720612945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_9" type="mesh" mesh="collision_9" pos="0.000598690184207 0.00720002445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_10" type="mesh" mesh="collision_10" pos="0.000619635184207 0.00719301445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_11" type="mesh" mesh="collision_11" pos="0.000640290184207 0.00718510945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_12" type="mesh" mesh="collision_12" pos="0.000660625184207 0.00717631945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_13" type="mesh" mesh="collision_13" pos="0.000680590184207 0.00716667445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_14" type="mesh" mesh="collision_14" pos="0.000700155184207 0.00715617945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_15" type="mesh" mesh="collision_15" pos="0.000719280184207 0.00714486445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_16" type="mesh" mesh="collision_16" pos="0.000737930184207 0.00713274445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_17" type="mesh" mesh="collision_17" pos="0.000756070184207 0.00711984445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_18" type="mesh" mesh="collision_18" pos="0.000773660184207 0.00710618945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_19" type="mesh" mesh="collision_19" pos="0.000790675184207 0.00709180445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_20" type="mesh" mesh="collision_20" pos="0.000807075184207 0.00707671945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_21" type="mesh" mesh="collision_21" pos="0.000822835184207 0.00706096445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_22" type="mesh" mesh="collision_22" pos="0.000837920184207 0.00704455945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_23" type="mesh" mesh="collision_23" pos="0.000852305184207 0.00702754945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_24" type="mesh" mesh="collision_24" pos="0.000865960184207 0.00700995445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_25" type="mesh" mesh="collision_25" pos="0.000878855184207 0.00699181945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_26" type="mesh" mesh="collision_26" pos="0.000890975184207 0.00697316945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_27" type="mesh" mesh="collision_27" pos="0.000902295184207 0.00695404445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_28" type="mesh" mesh="collision_28" pos="0.000912785184207 0.00693447945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_29" type="mesh" mesh="collision_29" pos="0.000922435184207 0.00691450945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_30" type="mesh" mesh="collision_30" pos="0.000931220184207 0.00689417945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_31" type="mesh" mesh="collision_31" pos="0.000939130184207 0.00687351945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_32" type="mesh" mesh="collision_32" pos="0.000946140184207 0.00685257945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_33" type="mesh" mesh="collision_33" pos="0.000952245184207 0.00683138945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_34" type="mesh" mesh="collision_34" pos="0.000957430184207 0.00680999445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_35" type="mesh" mesh="collision_35" pos="0.000961685184207 0.00678842945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_36" type="mesh" mesh="collision_36" pos="0.000965005184207 0.00676674445938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <geom name="collision_37" type="mesh" mesh="collision_37" pos="0.000967380184207 0.00674497945938 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <site name="tip" pos="0 0 0" size="0.001" rgba="0 0.8 0.2 0.7" />
+    </body>
+  </worldbody>
+</mujoco>

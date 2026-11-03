@@ -1,0 +1,16 @@
+<mujoco model="atb_m1_peg_rectangle">
+  <compiler angle="radian" />
+  <asset>
+    <mesh name="visual_mesh" file="meshes/manipulation_net/atb_m1_rectangular_peg.stl" scale="0.01 0.01 0.01" />
+    <mesh name="collision_0" file="meshes/manipulation_net/collision/peg_rectangle_0.obj" />
+  </asset>
+  <worldbody>
+    <body name="peg">
+      <freejoint name="freejoint" />
+      <inertial pos="0 0 0.025" mass="0.0114684417924" fullinertia="2.52577636565e-06 2.63189900489e-06 3.79157957052e-07 -4.91138488703e-24 0 0" />
+      <geom name="visual" type="mesh" mesh="visual_mesh" pos="0.0544927350374 -1.63351854915e-19 0" mass="0" contype="0" conaffinity="0" group="2" rgba="0.85 0.48 0.16 1" />
+      <geom name="collision_0" type="mesh" mesh="collision_0" pos="3.7364755387e-11 0 0.025" mass="0" group="3" rgba="0.35 0.65 0.85 0.2" margin="0" gap="0" friction="0.5 0.005 0.0001" solref="0.004 1" solimp="0.95 0.99 0.0001" />
+      <site name="tip" pos="0 0 0" size="0.001" rgba="0 0.8 0.2 0.7" />
+    </body>
+  </worldbody>
+</mujoco>
