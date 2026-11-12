@@ -16,7 +16,7 @@
 
     <worldbody>
         <!-- z = module top 0.932 + box half-height 0.012 + 3 mm drop -->
-        <body name="orange_fuse_block" pos="0.56 -0.20 0.947">
+        <body name="orange_fuse_block" pos="0.61 -0.20 0.947">
             <freejoint name="fuse_joint"/>
 
             <!-- Box collision for contact stability; carries the full 0.047 kg -->
